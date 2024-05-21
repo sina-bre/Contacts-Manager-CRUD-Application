@@ -135,5 +135,36 @@ namespace Application_Tests
         }
         #endregion
 
+        #region
+        [Fact]
+        //If we supply null as CountryID, it should returns null as CountryResponse
+        public void GetCountryByCountryID_NullCountryID()
+        {
+            //Arrange
+            Ulid? countryID = null;
+
+            //Act
+            CountryResponse? countryResponseFromGetMethod = _countriesService.GetCountryByCountryID(countryID);
+
+            Assert.Null(countryResponseFromGetMethod);
+        }
+
+        [Fact]
+        //If we supply a valid country id, it should return the matching country details as CountryResponse object  
+        public void GetCountryByCountryID_ValidCountryID()
+        {
+            //Arrange
+            CountryAddRequest countryAddRequest = new()
+            {
+                CountryName = "China",
+            };
+            CountryResponse countryResponseFromAdd = _countriesService.AddCountry(countryAddRequest);
+
+            CountryResponse? countryResponseFromGet = _countriesService.GetCountryByCountryID(countryResponseFromAdd.CountryID);
+
+            Assert.Equal(countryResponseFromAdd, countryResponseFromGet);
+        }
+
+        #endregion
     }
 }

@@ -47,5 +47,10 @@ namespace Services
         {
             return _countries.Select(country => country.ToCountryRespone()).ToList();
         }
+
+        public CountryResponse? GetCountryByCountryID(Ulid? CountryID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
