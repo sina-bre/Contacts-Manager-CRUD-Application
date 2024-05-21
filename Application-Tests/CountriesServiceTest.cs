@@ -128,7 +128,7 @@ namespace Application_Tests
             List<CountryResponse> actualCountryResponseList = _countriesService.GetAllCountries();
 
             //read each element from contriesListFromAddCountry
-            foreach (CountryResponse expectedCountry in actualCountryResponseList)
+            foreach (CountryResponse expectedCountry in countriesListFromAddCountry)
             {
                 Assert.Contains(expectedCountry, actualCountryResponseList);
             }
