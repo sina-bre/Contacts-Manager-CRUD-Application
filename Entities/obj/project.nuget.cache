@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "DOPLxQeYDjci3hcskTKLT3OnEeArOnxpjRiUS4zenYBhKtURa9QC7ZbscQopgpfhganitjnS7qiAQfHloH++lA==",
+  "success": true,
+  "projectFilePath": "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\Entities\\Entities.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Sina\\.nuget\\packages\\ulid\\1.3.3\\ulid.1.3.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "0MSmdZ+NC7VMn9WDVV9vOjb/CcvzIVg6dlPWe3ZTPk5CuMzdYT6dXiiL63bRH8lrD6KBf/GpF//tOkbK7eubYw==",
+  "success": true,
+  "projectFilePath": "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\ServiceContracts\\ServiceContracts.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Sina\\.nuget\\packages\\ulid\\1.3.3\\ulid.1.3.3.nupkg.sha512"
+  ],
+  "logs": []
+}

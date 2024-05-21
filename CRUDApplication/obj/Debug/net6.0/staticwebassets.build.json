@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "Pe6lnUzFK1qDWc/BZ9fl1Xb24TCuvaRt7CRAn3Te8sg=",
+  "Source": "CRUDApplication",
+  "BasePath": "_content/CRUDApplication",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "CRUDApplication\\wwwroot",
+      "Source": "CRUDApplication",
+      "ContentRoot": "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\CRUDApplication\\wwwroot\\",
+      "BasePath": "_content/CRUDApplication",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\CRUDApplication\\wwwroot\\StyleSheet.css",
+      "SourceId": "CRUDApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\CRUDApplication\\wwwroot\\",
+      "BasePath": "_content/CRUDApplication",
+      "RelativePath": "StyleSheet.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\StyleSheet.css"
+    }
+  ]
+}
