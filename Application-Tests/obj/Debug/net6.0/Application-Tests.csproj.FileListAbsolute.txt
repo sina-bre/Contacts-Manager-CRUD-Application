@@ -98,3 +98,11 @@ E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\Application-Tests\obj\Debu
 E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\Application-Tests\obj\Debug\net6.0\Application-Tests.pdb
 E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\Application-Tests\obj\Debug\net6.0\Application-Tests.genruntimeconfig.cache
 E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\Application-Tests\obj\Debug\net6.0\ref\Application-Tests.dll
+E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\Application-Tests\bin\Debug\net6.0\CoverletSourceRootsMapping
+E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\Application-Tests\bin\Debug\net6.0\Ulid.dll
+E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\Application-Tests\bin\Debug\net6.0\Entities.dll
+E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\Application-Tests\bin\Debug\net6.0\ServiceContracts.dll
+E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\Application-Tests\bin\Debug\net6.0\Services.dll
+E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\Application-Tests\bin\Debug\net6.0\Entities.pdb
+E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\Application-Tests\bin\Debug\net6.0\ServiceContracts.pdb
+E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\Application-Tests\bin\Debug\net6.0\Services.pdb
