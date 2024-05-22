@@ -1,6 +1,7 @@
 ﻿using Entities;
 using ServiceContracts.DTO.PersonDTO;
 using ServiceContracts.Interfaces;
+using Services.Helpers;
 
 namespace Services
 {
@@ -27,11 +28,8 @@ namespace Services
             if (personAddRequest is null)
                 throw new ArgumentNullException(nameof(personAddRequest));
 
-            ValidateNullParameter(personAddRequest.PersonName, nameof(personAddRequest.PersonName), "Person Name can't be empty.");
-            ValidateNullParameter(personAddRequest.Email, nameof(personAddRequest.Email), "Email can't be empty.");
-            ValidateNullParameter(personAddRequest.DateOfBirth, nameof(personAddRequest.DateOfBirth), "Date of Birth can't be empty.");
-            ValidateNullParameter(personAddRequest.CountryID, nameof(personAddRequest.CountryID), "Country ID can't be empty.");
-            ValidateNullParameter(personAddRequest.Address, nameof(personAddRequest.Address), "Address can't be empty.");
+            //Model Valiadtion
+            ValidationHelper.MedelValiadtion(personAddRequest);
 
             //convert personAddrequest into Person type
             Person person = personAddRequest.ToPerson();
@@ -49,14 +47,6 @@ namespace Services
         public List<PersonResponse> GetAllPersons()
         {
             throw new NotImplementedException();
-        }
-
-        public static void ValidateNullParameter(object? parameter, string parameterName, string message)
-        {
-            if (parameter is null)
-            {
-                throw new ArgumentException(message, parameterName);
-            }
         }
     }
 }
