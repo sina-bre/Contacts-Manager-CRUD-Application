@@ -1,4 +1,5 @@
-﻿using ServiceContracts.DTO.Enums;
+﻿using ServiceContracts.DTO.CountryDTO;
+using ServiceContracts.DTO.Enums;
 using ServiceContracts.DTO.PersonDTO;
 using ServiceContracts.Interfaces;
 using Services;
@@ -9,10 +10,12 @@ namespace Application_Tests
     public class PersonsServiceTest
     {
         private readonly IPersonsService _personsService;
+        private readonly ICountriesService _countriesService;
 
         public PersonsServiceTest()
         {
             _personsService = new PersonsService();
+            _countriesService = new CountriesService();
         }
 
         #region AddPerson
@@ -151,5 +154,52 @@ namespace Application_Tests
 
         #endregion
 
+        #region GetPersonByPersonID
+        //if we supply null as PersonID, it should return null as PersonResponse
+
+        [Fact]
+        public void GetPersonByPersonID_NullPersonID()
+        {
+            //Arrange
+            Ulid? personID = null;
+
+            //Act
+            PersonResponse? personResponseFromGet = _personsService.GetPersonByPersonId(personID);
+
+            //Assert
+            Assert.Null(personResponseFromGet);
+        }
+
+        //If we supply a valid person id, it should return the valid person details as PersonResponse object
+        [Fact]
+        public void GetPersonByPersonID_WitchPersonID()
+        {
+            //Arrange
+            CountryAddRequest countryRequest = new CountryAddRequest()
+            {
+                CountryName = "Iran"
+            };
+            CountryResponse countryResponse = _countriesService.AddCountry(countryRequest);
+
+            //Act
+            PersonAddRequest personRequest = new PersonAddRequest()
+            {
+                PersonName = "Person name",
+                Email = "person@example.com",
+                DateOfBirth = DateTime.Parse("2000-01-01"),
+                Address = "sample address",
+                CountryID = countryResponse.CountryID,
+                Gender = GenderOptions.Male,
+                ReciveNewsLetter = true,
+            };
+
+            PersonResponse personResponseFromAdd = _personsService.AddPerson(personRequest);
+
+            PersonResponse? personResponseFromGet = _personsService.GetPersonByPersonId(personResponseFromAdd.PersonID);
+
+            //Assert
+            Assert.Equal(personResponseFromAdd, personResponseFromGet);
+        }
+        #endregion
     }
 }
