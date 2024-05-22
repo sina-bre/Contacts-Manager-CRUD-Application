@@ -1,6 +1,6 @@
 ﻿using ServiceContracts.DTO.CountryDTO;
 
-namespace ServiceContracts
+namespace ServiceContracts.Interfaces
 {
     /// <summary>
     /// Represents busuness logic for maniupulaiting Country entiy
