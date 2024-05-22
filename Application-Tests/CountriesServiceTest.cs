@@ -1,5 +1,5 @@
 ﻿using ServiceContracts;
-using ServiceContracts.DTO;
+using ServiceContracts.DTO.CountryDTO;
 using Services;
 namespace Application_Tests
 {

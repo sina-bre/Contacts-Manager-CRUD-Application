@@ -1,5 +1,5 @@
 ﻿using Entities;
-namespace ServiceContracts.DTO
+namespace ServiceContracts.DTO.CountryDTO
 {
     public class CountryAddRequest
     {
