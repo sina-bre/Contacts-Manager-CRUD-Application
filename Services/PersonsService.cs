@@ -49,9 +49,19 @@ namespace Services
             throw new NotImplementedException();
         }
 
-        public PersonResponse GetPersonByPersonId(Ulid? personID)
+        public PersonResponse? GetPersonByPersonId(Ulid? personID)
         {
-            throw new NotImplementedException();
+            if (personID is null)
+                return null;
+
+            Person? matchedPerson = _persons.FirstOrDefault(temp => temp.ID == personID);
+
+            if (matchedPerson is null)
+                return null;
+
+            PersonResponse personResponse = matchedPerson.ToPerosnResponse();
+
+            return personResponse;
         }
     }
 }
