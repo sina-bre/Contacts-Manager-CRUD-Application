@@ -36,6 +36,19 @@
         {
             return base.GetHashCode();
         }
+        public override string ToString()
+        {
+            return $"PersonID: {PersonID}, " +
+                   $"PersonName: {PersonName ?? "N/A"}, " +
+                   $"Email: {Email ?? "N/A"}, " +
+                   $"DateOfBirth: {DateOfBirth?.ToString("yyyy-MM-dd") ?? "N/A"}, " +
+                   $"Gender: {Gender ?? "N/A"}, " +
+                   $"CountryID: {CountryID?.ToString() ?? "N/A"}, " +
+                   $"CountryName: {CountryName ?? "N/A"}, " +
+                   $"Address: {Address ?? "N/A"}, " +
+                   $"ReciveNewsLetter: {ReciveNewsLetter}, " +
+                   $"Age: {Age?.ToString() ?? "N/A"}";
+        }
     }
 }
 

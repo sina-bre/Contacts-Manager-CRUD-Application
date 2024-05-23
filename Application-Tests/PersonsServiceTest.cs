@@ -3,6 +3,7 @@ using ServiceContracts.DTO.Enums;
 using ServiceContracts.DTO.PersonDTO;
 using ServiceContracts.Interfaces;
 using Services;
+using Xunit.Abstractions;
 
 
 namespace Application_Tests
@@ -11,11 +12,13 @@ namespace Application_Tests
     {
         private readonly IPersonsService _personsService;
         private readonly ICountriesService _countriesService;
+        private readonly ITestOutputHelper _testOutputHelper;
 
-        public PersonsServiceTest()
+        public PersonsServiceTest(ITestOutputHelper testOutputHelper)
         {
             _personsService = new PersonsService();
             _countriesService = new CountriesService();
+            _testOutputHelper = testOutputHelper;
         }
 
         #region AddPerson
@@ -282,8 +285,20 @@ namespace Application_Tests
                 personResponseListFromAdd.Add(personResponse);
             }
 
+            //print personResponseListFromAdd
+            _testOutputHelper.WriteLine("Expected:");
+            foreach (PersonResponse personResponseFromAdd in personResponseListFromAdd)
+            {
+                _testOutputHelper.WriteLine(personResponseFromAdd.ToString());
+            }
+
             //Act
             List<PersonResponse> personResponseListFromGet = _personsService.GetAllPersons();
+            _testOutputHelper.WriteLine("Actual:");
+            foreach (PersonResponse persoResponseFromGet in personResponseListFromGet)
+            {
+                _testOutputHelper.WriteLine(persoResponseFromGet.ToString());
+            }
 
             foreach (PersonResponse personResponseFromAdd in personResponseListFromAdd)
             {
