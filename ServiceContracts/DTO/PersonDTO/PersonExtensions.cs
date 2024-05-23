@@ -25,7 +25,7 @@ namespace ServiceContracts.DTO.PersonDTO
             return new PersonResponse()
             {
                 PersonID = person.ID,
-                PersonName = person.Name,
+                PersonName = person.PersonName,
                 Email = person.Email,
                 DateOfBirth = person.DateOfBirth,
                 Gender = person.Gender,

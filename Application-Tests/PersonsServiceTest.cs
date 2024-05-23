@@ -386,7 +386,7 @@ namespace Application_Tests
             }
 
             //Act
-            List<PersonResponse> personsListFromSeacrh = _personsService.GetFilteredPersons(nameof(Person.Name), "");
+            List<PersonResponse> personsListFromSeacrh = _personsService.GetFilteredPersons(nameof(Person.PersonName), "");
 
             _testOutputHelper.WriteLine("Actual:");
             foreach (PersonResponse persoResponseFromGet in personsListFromSeacrh)
@@ -476,7 +476,7 @@ namespace Application_Tests
             }
 
             //Act
-            List<PersonResponse> personsListFromSeacrh = _personsService.GetFilteredPersons(nameof(Person.Name), "es");
+            List<PersonResponse> personsListFromSeacrh = _personsService.GetFilteredPersons(nameof(Person.PersonName), "es");
 
             _testOutputHelper.WriteLine("Actual:");
             foreach (PersonResponse persoResponseFromGet in personsListFromSeacrh)

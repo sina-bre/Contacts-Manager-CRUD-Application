@@ -3,7 +3,7 @@
     public class Person
     {
         public Ulid ID { get; set; }
-        public string? Name { get; set; }
+        public string? PersonName { get; set; }
         public string? Email { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public string? Gender { get; set; }
