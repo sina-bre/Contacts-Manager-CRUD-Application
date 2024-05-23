@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using Application_Tests.Helpers;
+using Entities;
 using ServiceContracts.DTO.CountryDTO;
 using ServiceContracts.DTO.Enums;
 using ServiceContracts.DTO.PersonDTO;
@@ -309,29 +310,15 @@ namespace Application_Tests
         }
         #endregion
 
-
         #region GetFilteredPersons
         //If the search text is empty and search by is "PersonName", should return all persons
         [Fact]
         public void GetFilteredPersons_EmptySearchText()
         {
             //Arrange
-            CountryAddRequest countryAddRequest1 = new()
-            {
-                CountryName = "France"
-            };
-            CountryAddRequest countryAddRequest2 = new()
-            {
-                CountryName = "Japan"
-            };
-            CountryAddRequest countryAddRequest3 = new()
-            {
-                CountryName = "Iran"
-            };
-
-            CountryResponse countryResponse1 = _countriesService.AddCountry(countryAddRequest1);
-            CountryResponse countryResponse2 = _countriesService.AddCountry(countryAddRequest2);
-            CountryResponse countryResponse3 = _countriesService.AddCountry(countryAddRequest3);
+            CountryResponse countryResponse1 = CreateCountryHelper.CountryCreator(_countriesService, "Italy");
+            CountryResponse countryResponse2 = CreateCountryHelper.CountryCreator(_countriesService, "USA");
+            CountryResponse countryResponse3 = CreateCountryHelper.CountryCreator(_countriesService, "Iran");
 
             PersonAddRequest? personAddRequest1 = new()
             {
@@ -493,6 +480,101 @@ namespace Application_Tests
                         Assert.Contains(personResponseFromAdd, personsListFromSeacrh);
                     }
                 }
+            }
+        }
+        #endregion
+
+        #region GetSortedPersons
+
+        //When we sort based on PersonName in DESC, it should return persons list in descending on PersonName 
+        [Fact]
+        public void GetSortedPersons()
+        {
+            //Arrange
+            CountryAddRequest countryAddRequest1 = new()
+            {
+                CountryName = "France"
+            };
+            CountryAddRequest countryAddRequest2 = new()
+            {
+                CountryName = "Japan"
+            };
+            CountryAddRequest countryAddRequest3 = new()
+            {
+                CountryName = "Iran"
+            };
+
+            CountryResponse countryResponse1 = _countriesService.AddCountry(countryAddRequest1);
+            CountryResponse countryResponse2 = _countriesService.AddCountry(countryAddRequest2);
+            CountryResponse countryResponse3 = _countriesService.AddCountry(countryAddRequest3);
+
+            PersonAddRequest? personAddRequest1 = new()
+            {
+                PersonName = "Carlos",
+                Email = "person@example.com",
+                DateOfBirth = DateTime.Parse("2000-01-01"),
+                Address = "sample address",
+                CountryID = countryResponse1.CountryID,
+                Gender = GenderOptions.Male,
+                ReciveNewsLetter = true,
+            };
+            PersonAddRequest? personAddRequest2 = new()
+            {
+                PersonName = "Urbes",
+                Email = "person@example.com",
+                DateOfBirth = DateTime.Parse("2000-01-01"),
+                Address = "sample address",
+                CountryID = countryResponse2.CountryID,
+                Gender = GenderOptions.Male,
+                ReciveNewsLetter = true,
+            };
+            PersonAddRequest? personAddRequest3 = new()
+            {
+                PersonName = "Normes",
+                Email = "person@example.com",
+                DateOfBirth = DateTime.Parse("2000-01-01"),
+                Address = "sample address",
+                CountryID = countryResponse3.CountryID,
+                Gender = GenderOptions.Male,
+                ReciveNewsLetter = true,
+            };
+
+            List<PersonAddRequest> personRequests = new()
+            {
+                personAddRequest1,
+                personAddRequest2,
+                personAddRequest3
+            };
+
+            List<PersonResponse> personResponseListFromAdd = new();
+            foreach (PersonAddRequest personRequest in personRequests)
+            {
+                PersonResponse personResponse = _personsService.AddPerson(personRequest);
+                personResponseListFromAdd.Add(personResponse);
+            }
+
+            personResponseListFromAdd = personResponseListFromAdd.OrderByDescending(temp => temp.PersonName).ToList();
+
+            //print personResponseListFromAdd
+            _testOutputHelper.WriteLine("Expected:");
+            foreach (PersonResponse personResponseFromAdd in personResponseListFromAdd)
+            {
+                _testOutputHelper.WriteLine(personResponseFromAdd.ToString());
+            }
+            List<PersonResponse> allPersons = _personsService.GetAllPersons();
+            //Act
+            List<PersonResponse> personsListFromSort = _personsService.GetSortedPersons(allPersons, nameof(Person.PersonName), SortOrderOptions.DESC);
+
+            _testOutputHelper.WriteLine("Actual:");
+            foreach (PersonResponse persoResponseFromSort in personsListFromSort)
+            {
+                _testOutputHelper.WriteLine(persoResponseFromSort.ToString());
+            }
+
+
+            for (int i = 0; i < personResponseListFromAdd.Count; i++)
+            {
+                Assert.Equal(personResponseListFromAdd[i], personsListFromSort[i]);
             }
         }
         #endregion

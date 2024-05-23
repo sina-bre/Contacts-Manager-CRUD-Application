@@ -1,4 +1,5 @@
-﻿using ServiceContracts.DTO.PersonDTO;
+﻿using ServiceContracts.DTO.Enums;
+using ServiceContracts.DTO.PersonDTO;
 
 namespace ServiceContracts.Interfaces
 {
@@ -34,6 +35,15 @@ namespace ServiceContracts.Interfaces
         /// <param name="serachString">Search string to search</param>
         /// <returns>Returns all matching persons based on the given search</returns>
         List<PersonResponse> GetFilteredPersons(string serachBy, string serachString);
+
+        /// <summary>
+        /// Returns sorted list of persons 
+        /// </summary>
+        /// <param name="allPersons">Represents list of persons to sort</param>
+        /// <param name="sortBy">Name of the property (key), based on wich the persons should be stored </param>
+        /// <param name="sortOrder">ASC DESC</param>
+        /// <returns>Returns sorted persons as PersonResponse list</returns>
+        List<PersonResponse> GetSortedPersons(List<PersonResponse> allPersons, string sortBy, SortOrderOptions sortOrder);
 
     }
 }
