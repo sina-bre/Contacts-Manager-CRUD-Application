@@ -1,4 +1,5 @@
-﻿using ServiceContracts.DTO.CountryDTO;
+﻿using Entities;
+using ServiceContracts.DTO.CountryDTO;
 using ServiceContracts.DTO.Enums;
 using ServiceContracts.DTO.PersonDTO;
 using ServiceContracts.Interfaces;
@@ -305,6 +306,194 @@ namespace Application_Tests
                 Assert.Contains(personResponseFromAdd, personResponseListFromGet);
             }
 
+        }
+        #endregion
+
+
+        #region GetFilteredPersons
+        //If the search text is empty and search by is "PersonName", should return all persons
+        [Fact]
+        public void GetFilteredPersons_EmptySearchText()
+        {
+            //Arrange
+            CountryAddRequest countryAddRequest1 = new()
+            {
+                CountryName = "France"
+            };
+            CountryAddRequest countryAddRequest2 = new()
+            {
+                CountryName = "Japan"
+            };
+            CountryAddRequest countryAddRequest3 = new()
+            {
+                CountryName = "Iran"
+            };
+
+            CountryResponse countryResponse1 = _countriesService.AddCountry(countryAddRequest1);
+            CountryResponse countryResponse2 = _countriesService.AddCountry(countryAddRequest2);
+            CountryResponse countryResponse3 = _countriesService.AddCountry(countryAddRequest3);
+
+            PersonAddRequest? personAddRequest1 = new()
+            {
+                PersonName = "Person name1",
+                Email = "person@example.com",
+                DateOfBirth = DateTime.Parse("2000-01-01"),
+                Address = "sample address",
+                CountryID = countryResponse1.CountryID,
+                Gender = GenderOptions.Male,
+                ReciveNewsLetter = true,
+            };
+            PersonAddRequest? personAddRequest2 = new()
+            {
+                PersonName = "Person name2",
+                Email = "person@example.com",
+                DateOfBirth = DateTime.Parse("2000-01-01"),
+                Address = "sample address",
+                CountryID = countryResponse2.CountryID,
+                Gender = GenderOptions.Male,
+                ReciveNewsLetter = true,
+            };
+            PersonAddRequest? personAddRequest3 = new()
+            {
+                PersonName = "Person name3",
+                Email = "person@example.com",
+                DateOfBirth = DateTime.Parse("2000-01-01"),
+                Address = "sample address",
+                CountryID = countryResponse3.CountryID,
+                Gender = GenderOptions.Male,
+                ReciveNewsLetter = true,
+            };
+
+            List<PersonAddRequest> personRequests = new()
+            {
+                personAddRequest1,
+                personAddRequest2,
+                personAddRequest3
+            };
+
+            List<PersonResponse> personResponseListFromAdd = new();
+            foreach (PersonAddRequest personRequest in personRequests)
+            {
+                PersonResponse personResponse = _personsService.AddPerson(personRequest);
+                personResponseListFromAdd.Add(personResponse);
+            }
+
+            //print personResponseListFromAdd
+            _testOutputHelper.WriteLine("Expected:");
+            foreach (PersonResponse personResponseFromAdd in personResponseListFromAdd)
+            {
+                _testOutputHelper.WriteLine(personResponseFromAdd.ToString());
+            }
+
+            //Act
+            List<PersonResponse> personsListFromSeacrh = _personsService.GetFilteredPersons(nameof(Person.Name), "");
+
+            _testOutputHelper.WriteLine("Actual:");
+            foreach (PersonResponse persoResponseFromGet in personsListFromSeacrh)
+            {
+                _testOutputHelper.WriteLine(persoResponseFromGet.ToString());
+            }
+
+            foreach (PersonResponse personResponseFromAdd in personResponseListFromAdd)
+            {
+                Assert.Contains(personResponseFromAdd, personsListFromSeacrh);
+            }
+        }
+
+
+        //First we will add few persons; and then we will search based on person name with some search string. It should return the matching person
+        [Fact]
+        public void GetFilteredPersons_SearchByPersonName()
+        {
+            //Arrange
+            CountryAddRequest countryAddRequest1 = new()
+            {
+                CountryName = "France"
+            };
+            CountryAddRequest countryAddRequest2 = new()
+            {
+                CountryName = "Japan"
+            };
+            CountryAddRequest countryAddRequest3 = new()
+            {
+                CountryName = "Iran"
+            };
+
+            CountryResponse countryResponse1 = _countriesService.AddCountry(countryAddRequest1);
+            CountryResponse countryResponse2 = _countriesService.AddCountry(countryAddRequest2);
+            CountryResponse countryResponse3 = _countriesService.AddCountry(countryAddRequest3);
+
+            PersonAddRequest? personAddRequest1 = new()
+            {
+                PersonName = "Carlos",
+                Email = "person@example.com",
+                DateOfBirth = DateTime.Parse("2000-01-01"),
+                Address = "sample address",
+                CountryID = countryResponse1.CountryID,
+                Gender = GenderOptions.Male,
+                ReciveNewsLetter = true,
+            };
+            PersonAddRequest? personAddRequest2 = new()
+            {
+                PersonName = "Urbes",
+                Email = "person@example.com",
+                DateOfBirth = DateTime.Parse("2000-01-01"),
+                Address = "sample address",
+                CountryID = countryResponse2.CountryID,
+                Gender = GenderOptions.Male,
+                ReciveNewsLetter = true,
+            };
+            PersonAddRequest? personAddRequest3 = new()
+            {
+                PersonName = "Normes",
+                Email = "person@example.com",
+                DateOfBirth = DateTime.Parse("2000-01-01"),
+                Address = "sample address",
+                CountryID = countryResponse3.CountryID,
+                Gender = GenderOptions.Male,
+                ReciveNewsLetter = true,
+            };
+
+            List<PersonAddRequest> personRequests = new()
+            {
+                personAddRequest1,
+                personAddRequest2,
+                personAddRequest3
+            };
+
+            List<PersonResponse> personResponseListFromAdd = new();
+            foreach (PersonAddRequest personRequest in personRequests)
+            {
+                PersonResponse personResponse = _personsService.AddPerson(personRequest);
+                personResponseListFromAdd.Add(personResponse);
+            }
+
+            //print personResponseListFromAdd
+            _testOutputHelper.WriteLine("Expected:");
+            foreach (PersonResponse personResponseFromAdd in personResponseListFromAdd)
+            {
+                _testOutputHelper.WriteLine(personResponseFromAdd.ToString());
+            }
+
+            //Act
+            List<PersonResponse> personsListFromSeacrh = _personsService.GetFilteredPersons(nameof(Person.Name), "es");
+
+            _testOutputHelper.WriteLine("Actual:");
+            foreach (PersonResponse persoResponseFromGet in personsListFromSeacrh)
+            {
+                _testOutputHelper.WriteLine(persoResponseFromGet.ToString());
+            }
+
+            foreach (PersonResponse personResponseFromAdd in personResponseListFromAdd)
+            {
+                if (personResponseFromAdd.PersonName is not null)
+                {
+                    if (personResponseFromAdd.PersonName.Contains("es", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Assert.Contains(personResponseFromAdd, personsListFromSeacrh);
+                    }
+                }
+            }
         }
         #endregion
     }

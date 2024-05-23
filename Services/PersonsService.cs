@@ -65,5 +65,10 @@ namespace Services
 
             return personResponse;
         }
+
+        public List<PersonResponse> GetFilteredPersons(string serachBy, string serachString)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

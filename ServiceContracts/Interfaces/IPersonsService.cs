@@ -26,5 +26,14 @@ namespace ServiceContracts.Interfaces
         /// <param name="personID">Person id to search</param>
         /// <returns>Matching person object</returns>
         PersonResponse? GetPersonByPersonId(Ulid? personID);
+
+        /// <summary>
+        /// Returns all persons objects that matches with the given search field and search string
+        /// </summary>
+        /// <param name="serachBy">Serach field to serach</param>
+        /// <param name="serachString">Search string to search</param>
+        /// <returns>Returns all matching persons based on the given search</returns>
+        List<PersonResponse> GetFilteredPersons(string serachBy, string serachString);
+
     }
 }
