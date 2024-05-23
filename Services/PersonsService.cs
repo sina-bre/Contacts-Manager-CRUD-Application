@@ -129,7 +129,17 @@ namespace Services
 
         public List<PersonResponse> GetSortedPersons(List<PersonResponse> allPersons, string sortBy, SortOrderOptions sortOrder)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(sortBy))
+                return allPersons;
+
+            PropertyInfo? property = typeof(PersonResponse).GetProperty(sortBy);
+
+            return sortOrder switch
+            {
+                SortOrderOptions.ASC => allPersons.OrderBy(item => property?.GetValue(item)).ToList(),
+                SortOrderOptions.DESC => allPersons.OrderByDescending(item => property?.GetValue(item)).ToList(),
+                _ => allPersons
+            };
         }
     }
 }

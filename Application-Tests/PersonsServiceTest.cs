@@ -522,7 +522,7 @@ namespace Application_Tests
             {
                 PersonName = "Urbes",
                 Email = "person@example.com",
-                DateOfBirth = DateTime.Parse("2000-01-01"),
+                DateOfBirth = DateTime.Parse("2000-08-02"),
                 Address = "sample address",
                 CountryID = countryResponse2.CountryID,
                 Gender = GenderOptions.Male,
@@ -532,7 +532,7 @@ namespace Application_Tests
             {
                 PersonName = "Normes",
                 Email = "person@example.com",
-                DateOfBirth = DateTime.Parse("2000-01-01"),
+                DateOfBirth = DateTime.Parse("2000-04-03"),
                 Address = "sample address",
                 CountryID = countryResponse3.CountryID,
                 Gender = GenderOptions.Male,
@@ -553,7 +553,7 @@ namespace Application_Tests
                 personResponseListFromAdd.Add(personResponse);
             }
 
-            personResponseListFromAdd = personResponseListFromAdd.OrderByDescending(temp => temp.PersonName).ToList();
+            personResponseListFromAdd = personResponseListFromAdd.OrderBy(temp => temp.DateOfBirth).ToList();
 
             //print personResponseListFromAdd
             _testOutputHelper.WriteLine("Expected:");
@@ -563,7 +563,7 @@ namespace Application_Tests
             }
             List<PersonResponse> allPersons = _personsService.GetAllPersons();
             //Act
-            List<PersonResponse> personsListFromSort = _personsService.GetSortedPersons(allPersons, nameof(Person.PersonName), SortOrderOptions.DESC);
+            List<PersonResponse> personsListFromSort = _personsService.GetSortedPersons(allPersons, nameof(Person.DateOfBirth), SortOrderOptions.ASC);
 
             _testOutputHelper.WriteLine("Actual:");
             foreach (PersonResponse persoResponseFromSort in personsListFromSort)
