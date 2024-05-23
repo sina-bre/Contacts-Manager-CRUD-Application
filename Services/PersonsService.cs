@@ -46,7 +46,9 @@ namespace Services
 
         public List<PersonResponse> GetAllPersons()
         {
-            throw new NotImplementedException();
+            List<PersonResponse> personResponses = _persons.Select(temp => temp.ToPerosnResponse()).ToList();
+
+            return personResponses;
         }
 
         public PersonResponse? GetPersonByPersonId(Ulid? personID)
