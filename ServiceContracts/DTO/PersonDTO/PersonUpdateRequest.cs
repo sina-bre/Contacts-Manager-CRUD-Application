@@ -1,13 +1,17 @@
 ﻿using Entities;
 using ServiceContracts.DTO.Enums;
 using System.ComponentModel.DataAnnotations;
+
 namespace ServiceContracts.DTO.PersonDTO
 {
     /// <summary>
-    /// Acts as a DTO for inserting a new person
+    /// Represents the DTO class that contains the person details to update
     /// </summary>
-    public class PersonAddRequest
+    public class PersonUpdateRequest
     {
+        [Required(ErrorMessage = "{0} can't be empty")]
+        public Ulid PersonID { get; set; }
+
         [Required(ErrorMessage = "{0} can't be empty")]
         public string? PersonName { get; set; }
 
@@ -29,6 +33,7 @@ namespace ServiceContracts.DTO.PersonDTO
         {
             return new Person()
             {
+                ID = PersonID,
                 PersonName = PersonName,
                 Email = Email,
                 DateOfBirth = DateOfBirth,

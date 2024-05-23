@@ -1,4 +1,6 @@
-﻿namespace ServiceContracts.DTO.PersonDTO
+﻿using ServiceContracts.DTO.Enums;
+
+namespace ServiceContracts.DTO.PersonDTO
 {
     /// <summary>
     /// Represents DTo class thst is used as return type of mosrt methods of Persons Service 
@@ -48,6 +50,20 @@
                    $"Address: {Address ?? "N/A"}, " +
                    $"ReciveNewsLetter: {ReciveNewsLetter}, " +
                    $"Age: {Age?.ToString() ?? "N/A"}";
+        }
+        public PersonUpdateRequest ToPersonUpdateRequest()
+        {
+            return new PersonUpdateRequest()
+            {
+                PersonID = PersonID,
+                PersonName = PersonName,
+                Email = Email,
+                DateOfBirth = DateOfBirth,
+                Gender = (GenderOptions)Enum.Parse(typeof(GenderOptions), Gender!, true),
+                Address = Address,
+                CountryID = CountryID,
+                ReciveNewsLetter = ReciveNewsLetter
+            };
         }
     }
 }
