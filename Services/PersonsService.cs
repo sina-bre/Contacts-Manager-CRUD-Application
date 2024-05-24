@@ -141,5 +141,15 @@ namespace Services
                 _ => allPersons
             };
         }
+
+        public PersonResponse UpdatePerson(PersonUpdateRequest? personUpdateRequest)
+        {
+            if (personUpdateRequest is null)
+                throw new ArgumentNullException(nameof(personUpdateRequest));
+
+            ValidationHelper.MedelValiadtion(personUpdateRequest);
+
+            throw new NotImplementedException();
+        }
     }
 }

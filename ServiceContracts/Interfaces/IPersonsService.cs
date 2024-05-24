@@ -45,5 +45,12 @@ namespace ServiceContracts.Interfaces
         /// <returns>Returns sorted persons as PersonResponse list</returns>
         List<PersonResponse> GetSortedPersons(List<PersonResponse> allPersons, string sortBy, SortOrderOptions sortOrder);
 
+        /// <summary>
+        /// Update the specified person details  based on the given PersonID
+        /// </summary>
+        /// <param name="personUpdateRequest">Person details to update, including person id</param>
+        /// <returns>Returns the PersonResponse object after update</returns>
+        PersonResponse UpdatePerson(PersonUpdateRequest? personUpdateRequest);
+
     }
 }

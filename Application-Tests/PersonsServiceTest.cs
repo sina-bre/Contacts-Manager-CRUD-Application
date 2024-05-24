@@ -578,5 +578,102 @@ namespace Application_Tests
             }
         }
         #endregion
+
+        #region UpdatePerson
+
+        //When we supply null as PersonUpdateRequest, it should throw ArgumentNullExeption
+        [Fact]
+        public void UpdatePerson_NullPerson()
+        {
+            //Arrange
+            PersonUpdateRequest? personUpdateRequest = null;
+
+            //Assert
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                //Act
+                PersonResponse personResponse = _personsService.UpdatePerson(personUpdateRequest);
+            });
+        }
+
+        //When we supply invalid PersonID, it should return throw argument exception
+        [Fact]
+        public void UpdatePerson_InvalidPersonID()
+        {
+            //Arrange
+            PersonUpdateRequest? personUpdateRequest = new()
+            {
+                PersonID = Ulid.NewUlid()
+            };
+            //Assert
+            Assert.Throws<ArgumentException>(() =>
+            {
+                //Act
+                PersonResponse personResponse = _personsService.UpdatePerson(personUpdateRequest);
+            });
+        }
+
+        [Theory]
+        [InlineData(null, "PersonName")]
+        [InlineData(null, "Email")]
+        [InlineData(null, "CountryID")]
+        [InlineData(null, "DateOfBirth")]
+        [InlineData(null, "Address")]
+        public void UpdatePerson_PropertyIsNull(string? nullValue, string propertyName)
+        {
+            // Arrange
+            CountryResponse countryResponse = CreateCountryHelper.CountryCreator(_countriesService, "Italy");
+            PersonAddRequest personAddRequest = new()
+            {
+                PersonName = "Carlos",
+                Email = "person@example.com",
+                DateOfBirth = DateTime.Parse("2000-01-01"),
+                Address = "sample address",
+                CountryID = countryResponse.CountryID,
+                Gender = GenderOptions.Male,
+                ReciveNewsLetter = true,
+            };
+            PersonResponse personResponseFromAdd = _personsService.AddPerson(personAddRequest);
+            PersonUpdateRequest personUpdateRequest = personResponseFromAdd.ToPersonUpdateRequest();
+            typeof(PersonUpdateRequest).GetProperty(propertyName)?.SetValue(personUpdateRequest, nullValue);
+
+            // Assert
+            Assert.Throws<ArgumentException>(() =>
+            {
+                //Act
+                PersonResponse personResponse = _personsService.UpdatePerson(personUpdateRequest);
+            });
+        }
+
+        [Fact]
+        public void UpdatePerson_PersonFullDetailsUpdation()
+        {
+            // Arrange
+            CountryResponse countryResponse = CreateCountryHelper.CountryCreator(_countriesService, "Iran");
+            PersonAddRequest personAddRequest = new()
+            {
+                PersonName = "Carlos",
+                Email = "person@example.com",
+                DateOfBirth = DateTime.Parse("2000-01-01"),
+                Address = "sample address",
+                CountryID = countryResponse.CountryID,
+                Gender = GenderOptions.Male,
+                ReciveNewsLetter = true,
+            };
+            PersonResponse personResponseFromAdd = _personsService.AddPerson(personAddRequest);
+
+            PersonUpdateRequest personUpdateRequest = personResponseFromAdd.ToPersonUpdateRequest();
+            personAddRequest.PersonName = "Parmida";
+            personAddRequest.Email = "Upadtedperson@example.com";
+
+            //Act
+            PersonResponse personResponseFromUpdate = _personsService.UpdatePerson(personUpdateRequest);
+
+            PersonResponse? personResponseFromGet = _personsService.GetPersonByPersonId(personResponseFromUpdate.PersonID);
+
+            //Assert
+            Assert.Equal(personResponseFromGet, personResponseFromUpdate);
+        }
+        #endregion
     }
 }

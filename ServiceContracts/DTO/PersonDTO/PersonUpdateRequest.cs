@@ -19,12 +19,15 @@ namespace ServiceContracts.DTO.PersonDTO
         [EmailAddress(ErrorMessage = "{0} value should be a valid email")]
         public string? Email { get; set; }
 
+        [Required(ErrorMessage = "{0} can't be empty")]
         public DateTime? DateOfBirth { get; set; }
 
         public GenderOptions Gender { get; set; }
 
+        [Required(ErrorMessage = "{0} can't be empty")]
         public Ulid? CountryID { get; set; }
 
+        [Required(ErrorMessage = "{0} can't be empty")]
         public string? Address { get; set; }
 
         public bool ReciveNewsLetter { get; set; }
