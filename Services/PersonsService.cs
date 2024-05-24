@@ -149,7 +149,22 @@ namespace Services
 
             ValidationHelper.MedelValiadtion(personUpdateRequest);
 
-            throw new NotImplementedException();
+            //get matching person object to update
+            Person? matchingPerson = _persons.FirstOrDefault(temp => temp.ID == personUpdateRequest.PersonID);
+
+            if (matchingPerson is null)
+                throw new ArgumentException($"Given {nameof(matchingPerson)} doesn't exist");
+
+            //update all details
+            matchingPerson.PersonName = personUpdateRequest.PersonName;
+            matchingPerson.Email = personUpdateRequest.Email;
+            matchingPerson.DateOfBirth = personUpdateRequest.DateOfBirth;
+            matchingPerson.Gender = personUpdateRequest.Gender.ToString();
+            matchingPerson.CountryID = personUpdateRequest.CountryID;
+            matchingPerson.Address = personUpdateRequest.Address;
+            matchingPerson.ReciveNewsLetters = personUpdateRequest.ReciveNewsLetters;
+
+            return matchingPerson.ToPerosnResponse();
         }
     }
 }
