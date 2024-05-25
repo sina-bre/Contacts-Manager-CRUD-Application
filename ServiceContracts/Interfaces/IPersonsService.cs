@@ -52,5 +52,13 @@ namespace ServiceContracts.Interfaces
         /// <returns>Returns the PersonResponse object after update</returns>
         PersonResponse UpdatePerson(PersonUpdateRequest? personUpdateRequest);
 
+        /// <summary>
+        /// Deletes a person based on the given person id
+        /// </summary>
+        /// <param name="personID">
+        /// PersonID to delete</param>
+        /// <returns>Returns true, if the deletion is successful otherwise returns false</returns>
+        bool DeletePerson(Ulid? personID);
+
     }
 }

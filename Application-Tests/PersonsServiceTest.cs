@@ -675,5 +675,43 @@ namespace Application_Tests
             Assert.Equal(personResponseFromGet, personResponseFromUpdate);
         }
         #endregion
+
+        #region DeletePerson
+
+        //if you supply an valid PersonID, it should return true
+        [Fact]
+        public void DeletePerson_ValidPersonID()
+        {
+            //Arrange
+            CountryResponse countryResponse = CreateCountryHelper.CountryCreator(_countriesService, "Italy");
+
+            PersonAddRequest personAddRequest = new()
+            {
+                PersonName = "Carlos",
+                Email = "person@example.com",
+                DateOfBirth = DateTime.Parse("2000-01-01"),
+                Address = "sample address",
+                CountryID = countryResponse.CountryID,
+                Gender = GenderOptions.Male,
+                ReciveNewsLetter = true,
+            };
+            PersonResponse personResponseFromAdd = _personsService.AddPerson(personAddRequest);
+
+            //Act
+            bool isDeleted = _personsService.DeletePerson(personResponseFromAdd.PersonID);
+
+            Assert.True(isDeleted);
+        }
+
+        //if you supply an invalid PersonID, it should return false
+        [Fact]
+        public void DeletePerson_InvalidPersonID()
+        {
+            //Act
+            bool isDeleted = _personsService.DeletePerson(Ulid.NewUlid());
+
+            Assert.False(isDeleted);
+        }
+        #endregion
     }
 }

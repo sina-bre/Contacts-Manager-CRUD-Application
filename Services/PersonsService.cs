@@ -166,5 +166,10 @@ namespace Services
 
             return matchingPerson.ToPerosnResponse();
         }
+
+        public bool DeletePerson(Ulid? personID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
