@@ -9,7 +9,7 @@ namespace Application_Tests
 
         public CountriesServiceTest()
         {
-            _countriesService = new CountriesService();
+            _countriesService = new CountriesService(false);
         }
 
         #region AddCountries

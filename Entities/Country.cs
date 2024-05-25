@@ -5,7 +5,7 @@
         /// <summary>
         /// Domain Model for Country
         /// </summary>
-        public Ulid Id { get; set; }
+        public Ulid ID { get; set; }
         public string? Name { get; set; }
     }
 }

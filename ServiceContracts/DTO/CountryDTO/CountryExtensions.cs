@@ -9,7 +9,7 @@ namespace ServiceContracts.DTO.CountryDTO
         {
             return new CountryResponse
             {
-                CountryID = country.Id,
+                CountryID = country.ID,
                 CountryName = country.Name,
             };
         }

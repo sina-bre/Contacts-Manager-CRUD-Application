@@ -1,6 +1,7 @@
 ﻿using Entities;
 using ServiceContracts.DTO.CountryDTO;
 using ServiceContracts.Interfaces;
+using System.Text.Json;
 
 namespace Services
 {
@@ -8,9 +9,21 @@ namespace Services
     {
         private readonly List<Country> _countries;
 
-        public CountriesService()
+        public CountriesService(bool initialize = true)
         {
             _countries = new List<Country>();
+            if (initialize)
+            {
+                string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string relativePath = Path.Combine(baseDirectory, "mockData", "Country.json");
+                string fullPath = Path.GetFullPath(relativePath);
+                string jsonString = File.ReadAllText(fullPath);
+
+                List<Country>? countries = JsonSerializer.Deserialize<List<Country>>(jsonString);
+
+                if (countries is not null)
+                    _countries.AddRange(countries);
+            }
         }
         public CountryResponse AddCountry(CountryAddRequest? countryAddRequest)
         {
@@ -35,7 +48,7 @@ namespace Services
             //Convert object from CountryAddRequest to Country type
             Country country = countryAddRequest.ToCountry();
             //generate CountryID
-            country.Id = Ulid.NewUlid();
+            country.ID = Ulid.NewUlid();
 
             //Add country object into _countries
             _countries.Add(country);
@@ -53,7 +66,7 @@ namespace Services
             if (countryID is null)
                 return null;
 
-            Country? countryResponseFromList = _countries.FirstOrDefault(countryTemp => countryTemp.Id == countryID);
+            Country? countryResponseFromList = _countries.FirstOrDefault(countryTemp => countryTemp.ID == countryID);
 
             if (countryResponseFromList is null)
                 return null;

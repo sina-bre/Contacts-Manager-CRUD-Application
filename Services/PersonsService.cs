@@ -4,6 +4,7 @@ using ServiceContracts.DTO.PersonDTO;
 using ServiceContracts.Interfaces;
 using Services.Helpers;
 using System.Reflection;
+using System.Text.Json;
 
 namespace Services
 {
@@ -12,10 +13,22 @@ namespace Services
         private readonly List<Person> _persons;
         private readonly ICountriesService _countriesService;
 
-        public PersonsService()
+        public PersonsService(bool initialize = true)
         {
             _persons = new List<Person>();
             _countriesService = new CountriesService();
+            if (initialize)
+            {
+                string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string relativePath = Path.Combine(baseDirectory, "mockData", "Perso.json");
+                string fullPath = Path.GetFullPath(relativePath);
+                string jsonString = File.ReadAllText(fullPath);
+
+                List<Person>? persons = JsonSerializer.Deserialize<List<Person>>(jsonString);
+
+                if (persons is not null)
+                    _persons.AddRange(persons);
+            }
         }
         private PersonResponse ConvertPersonToPersonResponse(Person person)
         {
