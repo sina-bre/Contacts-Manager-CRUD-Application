@@ -38,6 +38,7 @@ namespace Services
                 string json = File.ReadAllText(filePath);
                 List<Person>? persons = JsonSerializer.Deserialize<List<Person>>(json);
 
+
                 if (persons is not null)
                     _persons.AddRange(persons);
             }
