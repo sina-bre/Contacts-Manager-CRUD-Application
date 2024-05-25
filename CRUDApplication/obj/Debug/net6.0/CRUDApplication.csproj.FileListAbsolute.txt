@@ -30,3 +30,9 @@ E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\CRUDApplication\obj\Debug\
 E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\CRUDApplication\bin\Debug\net6.0\Ulid.dll
 E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\CRUDApplication\obj\Debug\net6.0\CRUDApplication.csproj.AssemblyReference.cache
 E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\CRUDApplication\obj\Debug\net6.0\CRUDAppl.57C3C807.Up2Date
+E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\CRUDApplication\bin\Debug\net6.0\Entities.dll
+E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\CRUDApplication\bin\Debug\net6.0\ServiceContracts.dll
+E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\CRUDApplication\bin\Debug\net6.0\Services.dll
+E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\CRUDApplication\bin\Debug\net6.0\Entities.pdb
+E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\CRUDApplication\bin\Debug\net6.0\ServiceContracts.pdb
+E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\CRUDApplication\bin\Debug\net6.0\Services.pdb

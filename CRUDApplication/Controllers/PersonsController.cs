@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
-
 namespace DIExample.Controllers
 {
-    public class HomeController : Controller
+    public class PersonsController : Controller
     {
+        [Route("persons/index")]
         [Route("/")]
         public IActionResult Index()
         {
