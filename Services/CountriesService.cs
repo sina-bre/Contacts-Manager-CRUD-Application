@@ -1,6 +1,7 @@
 ﻿using Entities;
 using ServiceContracts.DTO.CountryDTO;
 using ServiceContracts.Interfaces;
+using System.Reflection;
 using System.Text.Json;
 
 namespace Services
@@ -12,14 +13,27 @@ namespace Services
         public CountriesService(bool initialize = true)
         {
             _countries = new List<Country>();
+
             if (initialize)
             {
-                string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-                string relativePath = Path.Combine(baseDirectory, "mockData", "Country.json");
-                string fullPath = Path.GetFullPath(relativePath);
-                string jsonString = File.ReadAllText(fullPath);
+                throw new ArgumentException();
+                string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+                string? assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
 
-                List<Country>? countries = JsonSerializer.Deserialize<List<Country>>(jsonString);
+                if (assemblyDirectory is null)
+                    throw new ArgumentNullException();
+                DirectoryInfo? projectDirectory = Directory.GetParent(assemblyDirectory)?.Parent?.Parent?.Parent;
+                if (projectDirectory is null)
+                {
+                    throw new DirectoryNotFoundException($"Project directory was not found.");
+                }
+                string filePath = Path.Combine(projectDirectory.FullName, "Services", "mockData", "Countries.json");
+                if (!File.Exists(filePath))
+                {
+                    throw new FileNotFoundException($"The file '{filePath}' was not found.");
+                }
+                string json = File.ReadAllText(filePath);
+                List<Country>? countries = JsonSerializer.Deserialize<List<Country>>(json);
 
                 if (countries is not null)
                     _countries.AddRange(countries);
