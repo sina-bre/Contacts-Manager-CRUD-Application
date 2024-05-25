@@ -16,7 +16,6 @@ namespace Services
 
             if (initialize)
             {
-                throw new ArgumentException();
                 string assemblyLocation = Assembly.GetExecutingAssembly().Location;
                 string? assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
 
