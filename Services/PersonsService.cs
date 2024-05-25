@@ -169,7 +169,16 @@ namespace Services
 
         public bool DeletePerson(Ulid? personID)
         {
-            throw new NotImplementedException();
+            if (personID is null)
+                throw new ArgumentNullException(nameof(personID));
+
+            Person? person = _persons.FirstOrDefault(temp => temp.ID == personID);
+
+            if (person is null)
+                return false;
+
+            _persons.RemoveAll(temp => temp.ID == person.ID);
+            return true;
         }
     }
 }
