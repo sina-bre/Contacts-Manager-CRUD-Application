@@ -12,6 +12,10 @@
     box-sizing: border-box;
 }
 
+a{
+    text-decoration : none;
+}
+
 .container
 {
     min-width: 500px;
