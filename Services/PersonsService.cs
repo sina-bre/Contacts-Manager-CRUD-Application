@@ -112,6 +112,9 @@ namespace Services
                     return false;
 
                 string valueString = value is DateTime dateTime ? dateTime.ToString("dd MMMM yyyy") : value.ToString() ?? string.Empty;
+
+
+
                 return valueString.Contains(searchString, StringComparison.OrdinalIgnoreCase);
             }).ToList();
 
@@ -178,18 +181,29 @@ namespace Services
             //get matching person object to update
             Person? matchingPerson = _persons.FirstOrDefault(temp => temp.ID == personUpdateRequest.PersonID);
 
+            var personType = typeof(Person);
+            var updateRequestType = typeof(PersonUpdateRequest);
             if (matchingPerson is null)
-                throw new ArgumentException($"Given {nameof(matchingPerson)} doesn't exist");
+                throw new ArgumentException();
+            foreach (var property in updateRequestType.GetProperties())
+            {
+                var personProperty = personType.GetProperty(property.Name);
+                var value = property.GetValue(personUpdateRequest);
 
-            //update all details
-            matchingPerson.PersonName = personUpdateRequest.PersonName;
-            matchingPerson.Email = personUpdateRequest.Email;
-            matchingPerson.DateOfBirth = personUpdateRequest.DateOfBirth;
-            matchingPerson.Gender = personUpdateRequest.Gender.ToString();
-            matchingPerson.CountryID = personUpdateRequest.CountryID;
-            matchingPerson.Address = personUpdateRequest.Address;
-            matchingPerson.ReciveNewsLetters = personUpdateRequest.ReciveNewsLetters;
-
+                if (value is not null && personProperty is not null)
+                {
+                    if (property.Name == nameof(Person.Gender))
+                    {
+                        // Convert enum value to string
+                        var enumValueAsString = value.ToString();
+                        personProperty.SetValue(matchingPerson, enumValueAsString);
+                    }
+                    else
+                    {
+                        personProperty.SetValue(matchingPerson, value);
+                    }
+                }
+            }
             return matchingPerson.ToPerosnResponse();
         }
 
