@@ -4,6 +4,7 @@ using ServiceContracts.DTO.PersonDTO;
 using ServiceContracts.Interfaces;
 using Services.Helpers;
 using System.Reflection;
+using System.Text.Json;
 
 namespace Services
 {
@@ -12,10 +13,35 @@ namespace Services
         private readonly List<Person> _persons;
         private readonly ICountriesService _countriesService;
 
-        public PersonsService()
+
+        public PersonsService(bool initialize = true)
         {
             _persons = new List<Person>();
-            _countriesService = new CountriesService();
+            _countriesService = new CountriesService(false);
+
+            if (initialize)
+            {
+                string assemblyLocation = Assembly.GetExecutingAssembly().Location;
+                string? assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
+                if (assemblyDirectory is null)
+                    throw new ArgumentNullException(nameof(assemblyDirectory));
+                DirectoryInfo? projectDirectory = Directory.GetParent(assemblyDirectory)?.Parent?.Parent?.Parent;
+                if (projectDirectory is null)
+                {
+                    throw new DirectoryNotFoundException($"Project directory was not found.");
+                }
+                string filePath = Path.Combine(projectDirectory.FullName, "Services", "mockData", "Persons.json");
+                if (!File.Exists(filePath))
+                {
+                    throw new FileNotFoundException($"The file '{filePath}' was not found.");
+                }
+                string json = File.ReadAllText(filePath);
+                List<Person>? persons = JsonSerializer.Deserialize<List<Person>>(json);
+
+
+                if (persons is not null)
+                    _persons.AddRange(persons);
+            }
         }
         private PersonResponse ConvertPersonToPersonResponse(Person person)
         {

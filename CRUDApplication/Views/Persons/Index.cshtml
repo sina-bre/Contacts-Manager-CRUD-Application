@@ -1,0 +1,39 @@
+﻿@model IEnumerable<PersonResponse>
+@{
+    ViewBag.Title = "Persons";
+    PropertyInfo[] PersonProperties = typeof(PersonResponse).GetProperties();
+    IEnumerable<PropertyInfo> filteredPersonProperties = PersonProperties.Where(prop => prop.Name != "PersonID" && prop.Name != "CountryID");
+}
+
+<h1>Persons</h1>
+
+<table class="table" w-100 mt>
+    <thead>
+        <tr>
+            @foreach (PropertyInfo personProperty in filteredPersonProperties)
+            {
+                <th>@personProperty.Name</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (PersonResponse person in Model)
+        {
+            <tr>
+                @foreach (PropertyInfo personProperty in filteredPersonProperties)
+                {
+                    <td>
+                        @if (personProperty.Name == "DateOfBirth")
+                        {
+                            @person.DateOfBirth?.ToString("yyyy-mm-dd")
+                        }
+                        else
+                        {
+                            @personProperty.GetValue(person)
+                        }
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
