@@ -34,7 +34,7 @@ namespace ServiceContracts.Interfaces
         /// <param name="serachBy">Serach field to serach</param>
         /// <param name="serachString">Search string to search</param>
         /// <returns>Returns all matching persons based on the given search</returns>
-        List<PersonResponse> GetFilteredPersons(string serachBy, string serachString);
+        List<PersonResponse> GetFilteredPersons(string serachBy, string? serachString);
 
         /// <summary>
         /// Returns sorted list of persons 
