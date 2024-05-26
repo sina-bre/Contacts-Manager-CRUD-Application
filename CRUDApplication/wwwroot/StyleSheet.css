@@ -12,6 +12,8 @@
     box-sizing: border-box;
 }
 
+
+
 .container
 {
     min-width: 500px;
@@ -101,6 +103,9 @@
 .table tbody td
 {
     padding: 6px 10px;
+}
+a{
+    color:#7a7a7a;
 }
 
 .table tbody tr
@@ -353,8 +358,8 @@ a.link-hover:hover
     background-color: #e5e5e5;
 }
 
-.button
-{
+
+.button {
     padding: 8px 12px;
     border: 2px solid #cacaca;
     border-radius: 8px;

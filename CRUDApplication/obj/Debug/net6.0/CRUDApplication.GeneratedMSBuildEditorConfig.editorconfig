@@ -9,31 +9,31 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CRUDApplication
 build_property.RootNamespace = CRUDApplication
-build_property.ProjectDir = E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\CRUDApplication\
+build_property.ProjectDir = E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\CRUDApplication\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\CRUDApplication
+build_property.MSBuildProjectDirectory = E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\CRUDApplication
 build_property._RazorSourceGeneratorDebug = 
 
-[E:/ASP.NET Core/Asp.net Core Projects/CRUDApplication/CRUDApplication/Views/Home/Index.cshtml]
+[E:/ASP.NET Core/Asp.net Core Projects/Contacts-Manager-CRUD-Application/CRUDApplication/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/ASP.NET Core/Asp.net Core Projects/CRUDApplication/CRUDApplication/Views/Persons/Index.cshtml]
+[E:/ASP.NET Core/Asp.net Core Projects/Contacts-Manager-CRUD-Application/CRUDApplication/Views/Persons/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/ASP.NET Core/Asp.net Core Projects/CRUDApplication/CRUDApplication/Views/Shared/_Layout.cshtml]
+[E:/ASP.NET Core/Asp.net Core Projects/Contacts-Manager-CRUD-Application/CRUDApplication/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/ASP.NET Core/Asp.net Core Projects/CRUDApplication/CRUDApplication/Views/_ViewImports.cshtml]
+[E:/ASP.NET Core/Asp.net Core Projects/Contacts-Manager-CRUD-Application/CRUDApplication/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/ASP.NET Core/Asp.net Core Projects/CRUDApplication/CRUDApplication/Views/_ViewStart.cshtml]
+[E:/ASP.NET Core/Asp.net Core Projects/Contacts-Manager-CRUD-Application/CRUDApplication/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

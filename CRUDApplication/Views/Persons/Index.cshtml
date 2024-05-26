@@ -4,36 +4,61 @@
     PropertyInfo[] PersonProperties = typeof(PersonResponse).GetProperties();
     IEnumerable<PropertyInfo> filteredPersonProperties = PersonProperties.Where(prop => prop.Name != "PersonID" && prop.Name != "CountryID");
 }
-
-<h1>Persons</h1>
-
-<table class="table" w-100 mt>
-    <thead>
-        <tr>
-            @foreach (PropertyInfo personProperty in filteredPersonProperties)
-            {
-                <th>@personProperty.Name</th>
-            }
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (PersonResponse person in Model)
-        {
+<form action="~/persons/index" method="get">
+    <h1>Persons</h1>
+    <div class="box flex">
+        <div class="flex-1">
+            <select class="form-input" name="searchBy">
+                @foreach (var field in ViewBag.SearchFields)
+                {
+                    if(field.Key == ViewBag.CurrentSearchBy)
+                    {
+                        <option value="@field.Key" selected="selected">@field.Value </option>
+                    }
+                    else
+                    {
+                        <option value="@field.Key">@field.Value </option>
+                    }
+                   
+                }
+            </select>
+        </div>
+        <div class="flex-1">
+            <input type="search" id="Search" class="form-input" placeholder="Search" name="searchString" value="@ViewBag.CurrentSearchString" />
+        </div>
+        <div class="flex-1">
+            <button class="button button-blue-back" type="submit">Search</button>
+            <button class="button"><a href="~/persons/index" style="text-decoration:none;color:#7a7a7a" class="link-hover">Clear All</a></button>
+        </div>
+    </div>
+    <table class="table w-100 mt">
+        <thead>
             <tr>
                 @foreach (PropertyInfo personProperty in filteredPersonProperties)
                 {
-                    <td>
-                        @if (personProperty.Name == "DateOfBirth")
-                        {
-                            @person.DateOfBirth?.ToString("yyyy-mm-dd")
-                        }
-                        else
-                        {
-                            @personProperty.GetValue(person)
-                        }
-                    </td>
+                    <th>@personProperty.Name</th>
                 }
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (PersonResponse person in Model)
+            {
+                <tr>
+                    @foreach (PropertyInfo personProperty in filteredPersonProperties)
+                    {
+                        <td>
+                            @if (personProperty.Name == "DateOfBirth")
+                            {
+                                @person.DateOfBirth?.ToString("yyyy-mm-dd")
+                            }
+                            else
+                            {
+                                @personProperty.GetValue(person)
+                            }
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

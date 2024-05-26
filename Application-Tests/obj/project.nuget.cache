@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "84ABv2SWgCG6Keb0UseY2ztu5RCFUVQgnyBk9QE1uVsM+3Ih1V8JVRlcMe+in6k+Ba5DEBOj8K7r/Le6DhVuTQ==",
+  "dgSpecHash": "a3dyAioLo/dvqdtPxgEaA5pRdAXIS2mquy6SDgHt5gMobWu8SZKOMTQKcGqtir4oGy+r5MGp0YoNVXd+9n3NTQ==",
   "success": true,
-  "projectFilePath": "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\Application-Tests\\Application-Tests.csproj",
+  "projectFilePath": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\Application-Tests\\Application-Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sina\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
     "C:\\Users\\Sina\\.nuget\\packages\\microsoft.codecoverage\\17.5.0\\microsoft.codecoverage.17.5.0.nupkg.sha512",
