@@ -13,8 +13,19 @@ namespace DIExample.Controllers
         }
         [Route("persons/index")]
         [Route("/")]
-        public IActionResult Index()
+        public IActionResult Index(string searchBy)
         {
+            ViewBag.SearchFields = new Dictionary<string, string>()
+            {
+                {nameof(PersonResponse.PersonName), "Person Name"},
+                {nameof(PersonResponse.Email), "Email"},
+                {nameof(PersonResponse.DateOfBirth), "Birth"},
+                {nameof(PersonResponse.Gender), "Gender"},
+                {nameof(PersonResponse.CountryID), "Country"},
+                {nameof(PersonResponse.Address), "Address"},
+
+            };
+
             List<PersonResponse> persons = _personsService.GetAllPersons().ToList();
 
             return View(persons);

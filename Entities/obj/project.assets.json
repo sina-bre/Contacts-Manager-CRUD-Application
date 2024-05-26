@@ -52,11 +52,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\Entities\\Entities.csproj",
+      "projectUniqueName": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\Entities\\Entities.csproj",
       "projectName": "Entities",
-      "projectPath": "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\Entities\\Entities.csproj",
+      "projectPath": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\Entities\\Entities.csproj",
       "packagesPath": "C:\\Users\\Sina\\.nuget\\packages\\",
-      "outputPath": "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\Entities\\obj\\",
+      "outputPath": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\Entities\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Sina\\AppData\\Roaming\\NuGet\\NuGet.Config",
