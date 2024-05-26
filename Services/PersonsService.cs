@@ -117,43 +117,6 @@ namespace Services
 
                 return valueString.Contains(searchString, StringComparison.OrdinalIgnoreCase);
             }).ToList();
-
-            #region WithSwitchCases
-            /*
-            switch (searchBy)
-            {
-                case nameof(Person.PersonName):
-                    matchingPersons = allPersons.Where(temp => !string.IsNullOrEmpty(temp.PersonName) ? temp.PersonName.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                    break;
-
-                case nameof(Person.Email):
-                    matchingPersons = allPersons.Where(temp => !string.IsNullOrEmpty(temp.Email) ? temp.Email.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                    break;
-
-                case nameof(Person.DateOfBirth):
-                    matchingPersons = allPersons.Where(temp => (temp.DateOfBirth is not null) ? temp.DateOfBirth.Value.ToString("dd MMMM yyyy").Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                    break;
-
-                case nameof(Person.Gender):
-                    matchingPersons = allPersons.Where(temp => !string.IsNullOrEmpty(temp.Gender) ? temp.Gender.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                    break;
-
-                case nameof(Person.CountryID):
-                    matchingPersons = allPersons.Where(temp => !string.IsNullOrEmpty(temp.CountryName) ? temp.CountryName.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                    break;
-
-                case nameof(Person.Address):
-                    matchingPersons = allPersons.Where(temp => !string.IsNullOrEmpty(temp.Address) ? temp.Address.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                    break;
-
-                default:
-                    matchingPersons = allPersons;
-                    break;
-
-            }
-            return matchingPersons;
-            */
-            #endregion
         }
 
         public List<PersonResponse> GetSortedPersons(List<PersonResponse> allPersons, string sortBy, SortOrderOptions sortOrder)
