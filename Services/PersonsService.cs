@@ -17,7 +17,7 @@ namespace Services
         public PersonsService(bool initialize = true)
         {
             _persons = new List<Person>();
-            _countriesService = new CountriesService();
+            _countriesService = new CountriesService(false);
 
             if (initialize)
             {
