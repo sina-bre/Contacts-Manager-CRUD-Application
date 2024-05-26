@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SBUlR670Zst/a3d7Nl7Cp5rjXBi44wTLL5I2R8hvkLibZZ6k84lTW3UbTrCxaI7pRk+awEATHYEifWnr2hxmeQ==",
+  "dgSpecHash": "rBFwCcjRE1fiZEbvX10s9wliq1j5f3FfO/Md0/gJPzDQPeAMJPw8Bo+ZctXqun9ceoF1X5S7k7xzy4OaxR7ztQ==",
   "success": true,
-  "projectFilePath": "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\Services\\Services.csproj",
+  "projectFilePath": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\Services\\Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sina\\.nuget\\packages\\ulid\\1.3.3\\ulid.1.3.3.nupkg.sha512"
   ],

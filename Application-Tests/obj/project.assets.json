@@ -5615,11 +5615,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\Application-Tests\\Application-Tests.csproj",
+      "projectUniqueName": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\Application-Tests\\Application-Tests.csproj",
       "projectName": "Application-Tests",
-      "projectPath": "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\Application-Tests\\Application-Tests.csproj",
+      "projectPath": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\Application-Tests\\Application-Tests.csproj",
       "packagesPath": "C:\\Users\\Sina\\.nuget\\packages\\",
-      "outputPath": "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\Application-Tests\\obj\\",
+      "outputPath": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\Application-Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Sina\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5636,14 +5636,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\Entities\\Entities.csproj": {
-              "projectPath": "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\Entities\\Entities.csproj"
+            "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\Entities\\Entities.csproj": {
+              "projectPath": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\Entities\\Entities.csproj"
             },
-            "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\ServiceContracts\\ServiceContracts.csproj": {
-              "projectPath": "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\ServiceContracts\\ServiceContracts.csproj"
+            "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\ServiceContracts\\ServiceContracts.csproj": {
+              "projectPath": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\ServiceContracts\\ServiceContracts.csproj"
             },
-            "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\Services\\Services.csproj": {
-              "projectPath": "E:\\ASP.NET Core\\Asp.net Core Projects\\CRUDApplication\\Services\\Services.csproj"
+            "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\Services\\Services.csproj": {
+              "projectPath": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\Services\\Services.csproj"
             }
           }
         }
