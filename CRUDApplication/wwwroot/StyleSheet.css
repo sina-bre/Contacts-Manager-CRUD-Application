@@ -341,10 +341,10 @@ a{
     flex: 6 auto;
 }
 
-a:link, a:visited
+/*a:link, a:visited
 {
     color: blue;
-}
+}*/
 
 a.link-hover:link
 {
@@ -426,6 +426,9 @@ a.link-hover:hover
     display: inline-block;
 }
 
+.actvie-col{
+    color : darkorange;
+}
 
 
 

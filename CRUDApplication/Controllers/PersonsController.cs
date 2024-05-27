@@ -16,6 +16,7 @@ namespace DIExample.Controllers
         [Route("/")]
         public IActionResult Index(string searchBy, string? searchString, string sortBy = nameof(PersonResponse.PersonName), SortOrderOptions sortOrder = SortOrderOptions.ASC)
         {
+            ViewBag.SearchUrl = "~/persons/index";
 
             ViewBag.SearchFields = new Dictionary<string, string>()
             {
