@@ -11,7 +11,7 @@
             <select class="form-input" name="searchBy">
                 @foreach (var field in ViewBag.SearchFields)
                 {
-                    if(field.Key == ViewBag.CurrentSearchBy)
+                    if (field.Key == ViewBag.CurrentSearchBy)
                     {
                         <option value="@field.Key" selected="selected">@field.Value </option>
                     }
@@ -19,7 +19,7 @@
                     {
                         <option value="@field.Key">@field.Value </option>
                     }
-                   
+
                 }
             </select>
         </div>
@@ -36,7 +36,15 @@
             <tr>
                 @foreach (PropertyInfo personProperty in filteredPersonProperties)
                 {
-                    <th>@personProperty.Name</th>
+
+                    SortOrderOptions currentSortOrder = (SortOrderOptions)ViewBag.CurrentSortOrder;
+                    SortOrderOptions newSortOrder = currentSortOrder == SortOrderOptions.ASC && ViewBag.CurrentSortBy == personProperty.Name ? SortOrderOptions.DESC : SortOrderOptions.ASC;
+                    <th>
+                        @personProperty.Name
+                        <a href="~/persons/index?searchBy=@ViewBag.CurrentSearchBy&searchString=@ViewBag.CurrentSearchString&sortBy=@personProperty.Name&sortOrder=@newSortOrder">
+                            <i class="fa-solid  @((currentSortOrder == SortOrderOptions.ASC && ViewBag.CurrentSortBy == personProperty.Name) ? "fa-sort-up"  : "fa-sort-down")"></i>
+                        </a>
+                    </th>
                 }
             </tr>
         </thead>
