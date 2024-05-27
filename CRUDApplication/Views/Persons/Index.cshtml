@@ -8,7 +8,7 @@
 @await Html.PartialAsync("_SearchForm", new ViewDataDictionary(ViewData){
     {"SeacrhUrl" , searchUrl}
 })
-<table class="table mt">
+<table class="table mt w-100">
     <thead>
         <tr>
             @foreach (PropertyInfo personProperty in filteredPersonProperties)

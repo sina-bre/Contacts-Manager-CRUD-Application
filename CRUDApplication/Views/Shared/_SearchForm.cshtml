@@ -1,4 +1,4 @@
-﻿<form action="~/persons/index" method="get">
+﻿<form action="~/@ViewBag.SearchFromActionUrl" method="get">
     <h1>Persons</h1>
     <div class="box flex">
         <div class="flex-1">
@@ -22,7 +22,7 @@
         </div>
         <div class="flex-1">
             <button class="button button-blue-back" type="submit">Search</button>
-            <button class="button"><a href="@ViewBag.SearchUrl" style="text-decoration:none;color:#7a7a7a" class="link-hover">Clear All</a></button>
+            <button class="button"><a href="~/@ViewBag.SearchFromActionUrl" style="text-decoration:none;color:#7a7a7a" class="link-hover">Clear All</a></button>
         </div>
     </div>
 </form>
