@@ -114,8 +114,14 @@ namespace Services
                 string valueString = value is DateTime dateTime ? dateTime.ToString("dd MMMM yyyy") : value.ToString() ?? string.Empty;
 
 
-
-                return valueString.Contains(searchString, StringComparison.OrdinalIgnoreCase);
+                if (searchBy.Equals("Gender", StringComparison.OrdinalIgnoreCase))
+                {
+                    return valueString.Equals(searchString, StringComparison.OrdinalIgnoreCase);
+                }
+                else
+                {
+                    return valueString.Contains(searchString, StringComparison.OrdinalIgnoreCase);
+                }
             }).ToList();
         }
 
