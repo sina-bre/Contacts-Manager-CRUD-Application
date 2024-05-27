@@ -16,6 +16,7 @@ namespace DIExample.Controllers
         [Route("/")]
         public IActionResult Index(string searchBy, string? searchString, string sortBy = nameof(PersonResponse.PersonName), SortOrderOptions sortOrder = SortOrderOptions.ASC)
         {
+            ViewBag.SearchFromActionUrl = "persons/index";
 
             ViewBag.SearchFields = new Dictionary<string, string>()
             {
@@ -25,7 +26,7 @@ namespace DIExample.Controllers
                 {nameof(PersonResponse.Gender), "Gender"},
                 {nameof(PersonResponse.CountryID), "Country"},
                 {nameof(PersonResponse.Address), "Address"},
-
+                {nameof(PersonResponse.Age), "Age"},
             };
 
             List<PersonResponse> persons = _personsService.GetFilteredPersons(searchBy, searchString);
@@ -39,6 +40,13 @@ namespace DIExample.Controllers
 
 
             return View(sortedPersons);
+        }
+
+        [Route("persons/create")]
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
         }
     }
 }
