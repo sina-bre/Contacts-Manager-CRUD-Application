@@ -46,7 +46,17 @@ namespace DIExample.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View(_personsService.GetAllPersons());
+            PersonAddRequest personResponse = new PersonAddRequest()
+            {
+                PersonName = "Carlos",
+                Email = "person@example.com",
+                DateOfBirth = DateTime.Parse("2000-01-01"),
+                Address = "sample address",
+                CountryID = Ulid.NewUlid(),
+                Gender = GenderOptions.Male,
+                ReciveNewsLetter = true,
+            };
+            return View(personResponse);
         }
     }
 }

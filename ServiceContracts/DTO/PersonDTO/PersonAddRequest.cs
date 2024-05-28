@@ -15,6 +15,7 @@ namespace ServiceContracts.DTO.PersonDTO
         [EmailAddress(ErrorMessage = "{0} value should be a valid email")]
         public string? Email { get; set; }
 
+
         public DateTime? DateOfBirth { get; set; }
 
         public GenderOptions Gender { get; set; }
