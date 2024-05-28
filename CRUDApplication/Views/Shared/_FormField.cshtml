@@ -1,0 +1,74 @@
+﻿@model KeyValuePair<string, object?>
+
+@{
+    var propertyName = Model.Key;
+    var propertyValue = Model.Value;
+    var propertyType = propertyValue?.GetType();
+    var inputTypeAttr = propertyValue?.GetType().GetProperty(propertyName)
+                         ?.GetCustomAttribute<InputTypeAttribute>();
+    var optionsAttr = propertyValue?.GetType().GetProperty(propertyName)
+                         ?.GetCustomAttribute<OptionsAttribute>();
+}
+
+<div class="form-group">
+    <label class="control-label">@propertyName</label>
+    @if (inputTypeAttr != null)
+    {
+        switch (inputTypeAttr.InputType)
+        {
+            case CustomInputType.Text:
+                <input type="text" name="@propertyName" value="@propertyValue" class="form-control" />
+                break;
+            case CustomInputType.CheckBox:
+                <input type="checkbox" name="@propertyName" value="true" checked="@((bool?)propertyValue)" class="form-check-input" />
+                <input type="hidden" name="@propertyName" value="false" />
+                break;
+            case CustomInputType.Radio:
+                foreach (var option in optionsAttr.Options)
+                {
+                    <div class="form-check">
+                        <input type="radio" name="@propertyName" value="@option" checked="@((string?)propertyValue == option)" class="form-check-input" />
+                        <label class="form-check-label">@option</label>
+                    </div>
+                }
+                break;
+            case CustomInputType.Select:
+                <select name="@propertyName" class="form-control">
+                    @foreach (var option in optionsAttr!.Options)
+                    {
+                        <option value="@option" selected="@((string?)propertyValue == option)">@option</option>
+                    }
+                </select>
+                break;
+            case CustomInputType.TextArea:
+                <textarea name="@propertyName" class="form-control">@propertyValue</textarea>
+                break;
+            case CustomInputType.Email:
+                <input type="email" name="@propertyName" value="@propertyValue" class="form-control" />
+                break;
+            case CustomInputType.Number:
+                <input type="number" name="@propertyName" value="@propertyValue" class="form-control" />
+                break;
+            case CustomInputType.Date:
+                <input type="date" name="@propertyName" value="@propertyValue" class="form-control" />
+                break;
+            case CustomInputType.Time:
+                <input type="time" name="@propertyName" value="@propertyValue" class="form-control" />
+                break;
+            case CustomInputType.Password:
+                <input type="password" name="@propertyName" class="form-control" />
+                break;
+            case CustomInputType.Hidden:
+                <input type="hidden" name="@propertyName" value="@propertyValue" />
+                break;
+            case CustomInputType.File:
+                <input type="file" name="@propertyName" class="form-control-file" />
+                break;
+        }
+    }
+    else
+    {
+        <input type="text" name="@propertyName" value="@propertyValue" class="form-control" />
+    }
+    <span class="text-danger">Validation Error Message</span> <!-- You need to replace this with actual validation error message handling -->
+</div>

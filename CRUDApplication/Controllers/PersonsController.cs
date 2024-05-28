@@ -46,7 +46,7 @@ namespace DIExample.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            return View(_personsService.GetAllPersons());
         }
     }
 }

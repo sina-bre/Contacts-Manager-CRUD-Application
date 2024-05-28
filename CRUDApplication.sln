@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRUDApplication", "CRUDApplication\CRUDApplication.csproj", "{F30D5681-5D55-43CF-84C3-80616F3AECD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRUDApplication", "CRUDApplication\CRUDApplication.csproj", "{F30D5681-5D55-43CF-84C3-80616F3AECD0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application-Tests", "Application-Tests\Application-Tests.csproj", "{5DE154D0-B489-476B-9543-9A471016911E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application-Tests", "Application-Tests\Application-Tests.csproj", "{5DE154D0-B489-476B-9543-9A471016911E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{EB3700DC-6833-46FB-A4EE-7D2F19ADEB91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{EB3700DC-6833-46FB-A4EE-7D2F19ADEB91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceContracts", "ServiceContracts\ServiceContracts.csproj", "{75DF1445-5FD7-4322-8DFF-B090DC6D9E24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceContracts", "ServiceContracts\ServiceContracts.csproj", "{75DF1445-5FD7-4322-8DFF-B090DC6D9E24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{CF54FF85-E650-4536-9EB3-AB24CE57688A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{CF54FF85-E650-4536-9EB3-AB24CE57688A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
