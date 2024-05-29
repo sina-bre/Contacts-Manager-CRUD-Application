@@ -47,17 +47,16 @@
 
         <div class="form-field flex">
             <div class="w-25">
-                <label for="Gender" class="form-label pt">Gender</label>
+                <label class="form-label">Gender</label>
             </div>
             <div class="flex-1">
-                <input type="radio" id="Male" value="Male" name="Gender" class="form-input" />
-
+                <input type="radio" id="Male" name="Gender" value="Male" />
                 <label for="Male">Male</label>
 
-                <input type="radio" id="Female" value="Female" name="Gender" class="form-input" />
+                <input type="radio" id="Female" name="Gender" value="Female" class="ml" />
                 <label for="Female">Female</label>
 
-                <input type="radio" id="Other" value="Other" name="Gender" class="form-input" />
+                <input type="radio" id="Other" name="Gender" value="Other" class="ml" />
                 <label for="Other">Other</label>
             </div>
         </div>
@@ -67,8 +66,12 @@
                 <label for="CountryID" class="form-label pt">Country</label>
             </div>
             <div class="flex-1">
-                <select name="CountryID" id="CountryID">
-                    <option value="value">text</option>
+                <select name="CountryID" id="CountryID" class="form-input">
+                    <option value="">Please Select</option>
+                    @foreach(CountryResponse country in ViewBag.Countries)
+                    {
+                        <option value="@country.CountryID">@country.CountryName</option>
+                    }
                 </select>
             </div>
         </div>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ServiceContracts.DTO.CountryDTO;
 using ServiceContracts.DTO.Enums;
 using ServiceContracts.DTO.PersonDTO;
 using ServiceContracts.Interfaces;
@@ -7,10 +8,12 @@ namespace DIExample.Controllers
     public class PersonsController : Controller
     {
         private readonly IPersonsService _personsService;
+        private readonly ICountriesService _countriesService;
 
-        public PersonsController(IPersonsService personsService)
+        public PersonsController(IPersonsService personsService, ICountriesService countriesService)
         {
             _personsService = personsService;
+            _countriesService = countriesService;
         }
         [Route("persons/index")]
         [Route("/")]
@@ -46,17 +49,9 @@ namespace DIExample.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            PersonAddRequest personResponse = new PersonAddRequest()
-            {
-                PersonName = "Carlos",
-                Email = "person@example.com",
-                DateOfBirth = DateTime.Parse("2000-01-01"),
-                Address = "sample address",
-                CountryID = Ulid.NewUlid(),
-                Gender = GenderOptions.Male,
-                ReciveNewsLetter = true,
-            };
-            return View(personResponse);
+            List<CountryResponse> countries = _countriesService.GetAllCountries();
+            ViewBag.Countries = countries;
+            return View();
         }
     }
 }
