@@ -11,3 +11,16 @@ E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\Entities\obj\Debug\net6.0\
 E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\Entities\obj\Debug\net6.0\refint\Entities.dll
 E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\Entities\obj\Debug\net6.0\Entities.pdb
 E:\ASP.NET Core\Asp.net Core Projects\CRUDApplication\Entities\obj\Debug\net6.0\ref\Entities.dll
+E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\bin\Debug\net6.0\Entities.deps.json
+E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\bin\Debug\net6.0\Entities.dll
+E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\bin\Debug\net6.0\Entities.pdb
+E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\obj\Debug\net6.0\Entities.csproj.AssemblyReference.cache
+E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\obj\Debug\net6.0\Entities.GeneratedMSBuildEditorConfig.editorconfig
+E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\obj\Debug\net6.0\Entities.AssemblyInfoInputs.cache
+E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\obj\Debug\net6.0\Entities.AssemblyInfo.cs
+E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\obj\Debug\net6.0\Entities.csproj.CoreCompileInputs.cache
+E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\obj\Debug\net6.0\Entities.sourcelink.json
+E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\obj\Debug\net6.0\Entities.dll
+E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\obj\Debug\net6.0\refint\Entities.dll
+E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\obj\Debug\net6.0\Entities.pdb
+E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\obj\Debug\net6.0\ref\Entities.dll
