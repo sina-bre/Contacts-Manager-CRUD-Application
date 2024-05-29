@@ -3,16 +3,27 @@
     ViewBag.Title = "Persons";
     PropertyInfo[] PersonProperties = typeof(PersonResponse).GetProperties();
     IEnumerable<PropertyInfo> filteredPersonProperties = PersonProperties.Where(prop => prop.Name != "PersonID" && prop.Name != "CountryID");
+    string searchUrl = "~/persons/index";
 }
-
-<h1>Persons</h1>
-
-<table class="table" w-100 mt>
+@await Html.PartialAsync("_SearchForm", new ViewDataDictionary(ViewData){
+    {"SeacrhUrl" , searchUrl}
+})
+<table class="table mt w-100">
     <thead>
         <tr>
             @foreach (PropertyInfo personProperty in filteredPersonProperties)
             {
-                <th>@personProperty.Name</th>
+
+                SortOrderOptions currentSortOrder = (SortOrderOptions)ViewBag.CurrentSortOrder;
+                SortOrderOptions newSortOrder = currentSortOrder == SortOrderOptions.ASC && ViewBag.CurrentSortBy == personProperty.Name ? SortOrderOptions.DESC : SortOrderOptions.ASC;
+                <th>
+                    <div>
+                        @personProperty.Name
+                    </div>
+                    <a class="@(ViewBag.CurrentSortBy == personProperty.Name ? "actvie-col" : "")" href="~/persons/index?searchBy=@ViewBag.CurrentSearchBy&searchString=@ViewBag.CurrentSearchString&sortBy=@personProperty.Name&sortOrder=@newSortOrder">
+                        <i class="fa-solid  @(currentSortOrder == SortOrderOptions.ASC && ViewBag.CurrentSortBy == personProperty.Name ? "fa-sort-up"  : "fa-sort-down") "></i>
+                    </a>
+                </th>
             }
         </tr>
     </thead>

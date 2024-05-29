@@ -12,6 +12,8 @@
     box-sizing: border-box;
 }
 
+
+
 .container
 {
     min-width: 500px;
@@ -101,6 +103,10 @@
 .table tbody td
 {
     padding: 6px 10px;
+}
+a{
+    color:#7a7a7a;
+    text-decoration: none !important;
 }
 
 .table tbody tr
@@ -336,10 +342,10 @@
     flex: 6 auto;
 }
 
-a:link, a:visited
+/*a:link, a:visited
 {
     color: blue;
-}
+}*/
 
 a.link-hover:link
 {
@@ -353,8 +359,8 @@ a.link-hover:hover
     background-color: #e5e5e5;
 }
 
-.button
-{
+
+.button {
     padding: 8px 12px;
     border: 2px solid #cacaca;
     border-radius: 8px;
@@ -421,6 +427,9 @@ a.link-hover:hover
     display: inline-block;
 }
 
+.actvie-col{
+    color : darkorange;
+}
 
 
 

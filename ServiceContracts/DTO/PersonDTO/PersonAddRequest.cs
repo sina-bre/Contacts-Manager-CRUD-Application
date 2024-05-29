@@ -15,6 +15,7 @@ namespace ServiceContracts.DTO.PersonDTO
         [EmailAddress(ErrorMessage = "{0} value should be a valid email")]
         public string? Email { get; set; }
 
+
         public DateTime? DateOfBirth { get; set; }
 
         public GenderOptions Gender { get; set; }
@@ -23,7 +24,7 @@ namespace ServiceContracts.DTO.PersonDTO
 
         public string? Address { get; set; }
 
-        public bool ReciveNewsLetter { get; set; }
+        public bool ReceiveNewsLetters { get; set; }
 
         public Person ToPerson()
         {
@@ -35,7 +36,7 @@ namespace ServiceContracts.DTO.PersonDTO
                 Gender = Gender.ToString(),
                 CountryID = CountryID,
                 Address = Address,
-                ReciveNewsLetters = ReciveNewsLetter
+                ReceiveNewsLetters = ReceiveNewsLetters
             };
         }
     }

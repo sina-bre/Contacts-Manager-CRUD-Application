@@ -17,7 +17,7 @@ namespace Services
         public PersonsService(bool initialize = true)
         {
             _persons = new List<Person>();
-            _countriesService = new CountriesService(false);
+            _countriesService = new CountriesService();
 
             if (initialize)
             {
@@ -74,7 +74,7 @@ namespace Services
 
         public List<PersonResponse> GetAllPersons()
         {
-            List<PersonResponse> personResponses = _persons.Select(temp => temp.ToPerosnResponse()).ToList();
+            List<PersonResponse> personResponses = _persons.Select(temp => ConvertPersonToPersonResponse(temp)).ToList();
 
             return personResponses;
         }
@@ -89,12 +89,12 @@ namespace Services
             if (matchedPerson is null)
                 return null;
 
-            PersonResponse personResponse = matchedPerson.ToPerosnResponse();
+            PersonResponse personResponse = ConvertPersonToPersonResponse(matchedPerson);
 
             return personResponse;
         }
 
-        public List<PersonResponse> GetFilteredPersons(string searchBy, string searchString)
+        public List<PersonResponse> GetFilteredPersons(string searchBy, string? searchString)
         {
             List<PersonResponse> allPersons = GetAllPersons();
             List<PersonResponse> matchingPersons = allPersons;
@@ -112,45 +112,17 @@ namespace Services
                     return false;
 
                 string valueString = value is DateTime dateTime ? dateTime.ToString("dd MMMM yyyy") : value.ToString() ?? string.Empty;
-                return valueString.Contains(searchString, StringComparison.OrdinalIgnoreCase);
+
+
+                if (searchBy.Equals("Gender", StringComparison.OrdinalIgnoreCase))
+                {
+                    return valueString.Equals(searchString, StringComparison.OrdinalIgnoreCase);
+                }
+                else
+                {
+                    return valueString.Contains(searchString, StringComparison.OrdinalIgnoreCase);
+                }
             }).ToList();
-
-            #region WithSwitchCases
-            /*
-            switch (searchBy)
-            {
-                case nameof(Person.PersonName):
-                    matchingPersons = allPersons.Where(temp => !string.IsNullOrEmpty(temp.PersonName) ? temp.PersonName.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                    break;
-
-                case nameof(Person.Email):
-                    matchingPersons = allPersons.Where(temp => !string.IsNullOrEmpty(temp.Email) ? temp.Email.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                    break;
-
-                case nameof(Person.DateOfBirth):
-                    matchingPersons = allPersons.Where(temp => (temp.DateOfBirth is not null) ? temp.DateOfBirth.Value.ToString("dd MMMM yyyy").Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                    break;
-
-                case nameof(Person.Gender):
-                    matchingPersons = allPersons.Where(temp => !string.IsNullOrEmpty(temp.Gender) ? temp.Gender.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                    break;
-
-                case nameof(Person.CountryID):
-                    matchingPersons = allPersons.Where(temp => !string.IsNullOrEmpty(temp.CountryName) ? temp.CountryName.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                    break;
-
-                case nameof(Person.Address):
-                    matchingPersons = allPersons.Where(temp => !string.IsNullOrEmpty(temp.Address) ? temp.Address.Contains(searchString, StringComparison.OrdinalIgnoreCase) : true).ToList();
-                    break;
-
-                default:
-                    matchingPersons = allPersons;
-                    break;
-
-            }
-            return matchingPersons;
-            */
-            #endregion
         }
 
         public List<PersonResponse> GetSortedPersons(List<PersonResponse> allPersons, string sortBy, SortOrderOptions sortOrder)
@@ -178,19 +150,30 @@ namespace Services
             //get matching person object to update
             Person? matchingPerson = _persons.FirstOrDefault(temp => temp.ID == personUpdateRequest.PersonID);
 
+            var personType = typeof(Person);
+            var updateRequestType = typeof(PersonUpdateRequest);
             if (matchingPerson is null)
-                throw new ArgumentException($"Given {nameof(matchingPerson)} doesn't exist");
+                throw new ArgumentException();
+            foreach (var property in updateRequestType.GetProperties())
+            {
+                var personProperty = personType.GetProperty(property.Name);
+                var value = property.GetValue(personUpdateRequest);
 
-            //update all details
-            matchingPerson.PersonName = personUpdateRequest.PersonName;
-            matchingPerson.Email = personUpdateRequest.Email;
-            matchingPerson.DateOfBirth = personUpdateRequest.DateOfBirth;
-            matchingPerson.Gender = personUpdateRequest.Gender.ToString();
-            matchingPerson.CountryID = personUpdateRequest.CountryID;
-            matchingPerson.Address = personUpdateRequest.Address;
-            matchingPerson.ReciveNewsLetters = personUpdateRequest.ReciveNewsLetters;
-
-            return matchingPerson.ToPerosnResponse();
+                if (value is not null && personProperty is not null)
+                {
+                    if (property.Name == nameof(Person.Gender))
+                    {
+                        // Convert enum value to string
+                        var enumValueAsString = value.ToString();
+                        personProperty.SetValue(matchingPerson, enumValueAsString);
+                    }
+                    else
+                    {
+                        personProperty.SetValue(matchingPerson, value);
+                    }
+                }
+            }
+            return ConvertPersonToPersonResponse(matchingPerson);
         }
 
         public bool DeletePerson(Ulid? personID)

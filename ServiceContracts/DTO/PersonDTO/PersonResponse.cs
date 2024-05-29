@@ -15,7 +15,7 @@ namespace ServiceContracts.DTO.PersonDTO
         public Ulid? CountryID { get; set; }
         public string? CountryName { get; set; }
         public string? Address { get; set; }
-        public bool ReciveNewsLetter { get; set; }
+        public bool ReceiveNewsLetters { get; set; }
         public double? Age { get; set; }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace ServiceContracts.DTO.PersonDTO
                 return false;
             }
             PersonResponse personToCompare = (PersonResponse)obj;
-            return PersonID == personToCompare.PersonID && PersonName == personToCompare.PersonName && Email == personToCompare.Email && DateOfBirth == personToCompare.DateOfBirth && Gender == personToCompare.Gender && CountryID == personToCompare.CountryID && Address == personToCompare.Address && ReciveNewsLetter == personToCompare.ReciveNewsLetter;
+            return PersonID == personToCompare.PersonID && PersonName == personToCompare.PersonName && Email == personToCompare.Email && DateOfBirth == personToCompare.DateOfBirth && Gender == personToCompare.Gender && CountryID == personToCompare.CountryID && Address == personToCompare.Address && ReceiveNewsLetters == personToCompare.ReceiveNewsLetters;
         }
         public override int GetHashCode()
         {
@@ -48,7 +48,7 @@ namespace ServiceContracts.DTO.PersonDTO
                    $"CountryID: {CountryID?.ToString() ?? "N/A"}, " +
                    $"CountryName: {CountryName ?? "N/A"}, " +
                    $"Address: {Address ?? "N/A"}, " +
-                   $"ReciveNewsLetter: {ReciveNewsLetter}, " +
+                   $"ReceiveNewsLetters: {ReceiveNewsLetters}, " +
                    $"Age: {Age?.ToString() ?? "N/A"}";
         }
         public PersonUpdateRequest ToPersonUpdateRequest()
@@ -62,7 +62,7 @@ namespace ServiceContracts.DTO.PersonDTO
                 Gender = (GenderOptions)Enum.Parse(typeof(GenderOptions), Gender!, true),
                 Address = Address,
                 CountryID = CountryID,
-                ReciveNewsLetters = ReciveNewsLetter
+                ReceiveNewsLetters = ReceiveNewsLetters
             };
         }
     }
