@@ -143,7 +143,7 @@ namespace Application_Tests
                 Address = "sample address",
                 CountryID = Ulid.NewUlid(),
                 Gender = GenderOptions.Male,
-                ReceiveNewsLetters = true,
+                ReciveNewsLetter = true,
             };
 
             //Act
@@ -195,7 +195,7 @@ namespace Application_Tests
                 Address = "sample address",
                 CountryID = countryResponse.CountryID,
                 Gender = GenderOptions.Male,
-                ReceiveNewsLetters = true,
+                ReciveNewsLetter = true,
             };
 
             PersonResponse personResponseFromAdd = _personsService.AddPerson(personRequest);
@@ -250,7 +250,7 @@ namespace Application_Tests
                 Address = "sample address",
                 CountryID = countryResponse1.CountryID,
                 Gender = GenderOptions.Male,
-                ReceiveNewsLetters = true,
+                ReciveNewsLetter = true,
             };
             PersonAddRequest? personAddRequest2 = new()
             {
@@ -260,7 +260,7 @@ namespace Application_Tests
                 Address = "sample address",
                 CountryID = countryResponse2.CountryID,
                 Gender = GenderOptions.Male,
-                ReceiveNewsLetters = true,
+                ReciveNewsLetter = true,
             };
             PersonAddRequest? personAddRequest3 = new()
             {
@@ -270,7 +270,7 @@ namespace Application_Tests
                 Address = "sample address",
                 CountryID = countryResponse3.CountryID,
                 Gender = GenderOptions.Male,
-                ReceiveNewsLetters = true,
+                ReciveNewsLetter = true,
             };
 
             List<PersonAddRequest> personRequests = new()
@@ -328,7 +328,7 @@ namespace Application_Tests
                 Address = "sample address",
                 CountryID = countryResponse1.CountryID,
                 Gender = GenderOptions.Male,
-                ReceiveNewsLetters = true,
+                ReciveNewsLetter = true,
             };
             PersonAddRequest? personAddRequest2 = new()
             {
@@ -338,7 +338,7 @@ namespace Application_Tests
                 Address = "sample address",
                 CountryID = countryResponse2.CountryID,
                 Gender = GenderOptions.Male,
-                ReceiveNewsLetters = true,
+                ReciveNewsLetter = true,
             };
             PersonAddRequest? personAddRequest3 = new()
             {
@@ -348,7 +348,7 @@ namespace Application_Tests
                 Address = "sample address",
                 CountryID = countryResponse3.CountryID,
                 Gender = GenderOptions.Male,
-                ReceiveNewsLetters = true,
+                ReciveNewsLetter = true,
             };
 
             List<PersonAddRequest> personRequests = new()
@@ -418,7 +418,7 @@ namespace Application_Tests
                 Address = "sample address",
                 CountryID = countryResponse1.CountryID,
                 Gender = GenderOptions.Male,
-                ReceiveNewsLetters = true,
+                ReciveNewsLetter = true,
             };
             PersonAddRequest? personAddRequest2 = new()
             {
@@ -428,7 +428,7 @@ namespace Application_Tests
                 Address = "sample address",
                 CountryID = countryResponse2.CountryID,
                 Gender = GenderOptions.Male,
-                ReceiveNewsLetters = true,
+                ReciveNewsLetter = true,
             };
             PersonAddRequest? personAddRequest3 = new()
             {
@@ -438,7 +438,7 @@ namespace Application_Tests
                 Address = "sample address",
                 CountryID = countryResponse3.CountryID,
                 Gender = GenderOptions.Male,
-                ReceiveNewsLetters = true,
+                ReciveNewsLetter = true,
             };
 
             List<PersonAddRequest> personRequests = new()
@@ -516,7 +516,7 @@ namespace Application_Tests
                 Address = "sample address",
                 CountryID = countryResponse1.CountryID,
                 Gender = GenderOptions.Male,
-                ReceiveNewsLetters = true,
+                ReciveNewsLetter = true,
             };
             PersonAddRequest? personAddRequest2 = new()
             {
@@ -526,7 +526,7 @@ namespace Application_Tests
                 Address = "sample address",
                 CountryID = countryResponse2.CountryID,
                 Gender = GenderOptions.Male,
-                ReceiveNewsLetters = true,
+                ReciveNewsLetter = true,
             };
             PersonAddRequest? personAddRequest3 = new()
             {
@@ -536,7 +536,7 @@ namespace Application_Tests
                 Address = "sample address",
                 CountryID = countryResponse3.CountryID,
                 Gender = GenderOptions.Male,
-                ReceiveNewsLetters = true,
+                ReciveNewsLetter = true,
             };
 
             List<PersonAddRequest> personRequests = new()
@@ -631,7 +631,7 @@ namespace Application_Tests
                 Address = "sample address",
                 CountryID = countryResponse.CountryID,
                 Gender = GenderOptions.Male,
-                ReceiveNewsLetters = true,
+                ReciveNewsLetter = true,
             };
             PersonResponse personResponseFromAdd = _personsService.AddPerson(personAddRequest);
             PersonUpdateRequest personUpdateRequest = personResponseFromAdd.ToPersonUpdateRequest();
@@ -658,7 +658,7 @@ namespace Application_Tests
                 Address = "sample address",
                 CountryID = countryResponse.CountryID,
                 Gender = GenderOptions.Male,
-                ReceiveNewsLetters = true,
+                ReciveNewsLetter = true,
             };
             PersonResponse personResponseFromAdd = _personsService.AddPerson(personAddRequest);
 
@@ -693,7 +693,7 @@ namespace Application_Tests
                 Address = "sample address",
                 CountryID = countryResponse.CountryID,
                 Gender = GenderOptions.Male,
-                ReceiveNewsLetters = true,
+                ReciveNewsLetter = true,
             };
             PersonResponse personResponseFromAdd = _personsService.AddPerson(personAddRequest);
 
