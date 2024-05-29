@@ -17,13 +17,13 @@
 
 
 <div class="w-50">
-    <form action="~/" method="post">
+    <form action="~/persons/create" method="post">
         <div class="form-field flex">
             <div class="w-25">
                 <label for="PersonName" class="form-label pt">Name</label>
             </div>
             <div class="flex-1">
-                <input type="text" id="PersonName" name="PersoName" class="form-input" />
+                <input type="text" id="PersonName" name="PersonName" class="form-input" />
             </div>
         </div>
 
@@ -73,6 +73,44 @@
                         <option value="@country.CountryID">@country.CountryName</option>
                     }
                 </select>
+            </div>
+        </div>
+
+        <div class="form-field flex">
+            <div class="w-25">
+                <label for="Address" class="form-label pt">Address</label>
+            </div>
+            <div class="flex-1">
+                <textarea id="Address" name="Address" class="form-input" style="resize: none;"></textarea>
+            </div>
+        </div>
+
+        <div class="form-field flex">
+            <div class="w-25">
+            </div>
+            <div class="flex-1">
+                <input type="checkbox" name="ReceiveNewsLetters" id="ReceiveNewsLetters" value="true" />
+                <label for="ReceiveNewsLetters" class="form-label">Receive News Letters</label>
+            </div>
+        </div>
+
+        <div class="form-field flex">
+            <div class="w-25">
+            </div>
+            <div class="flex-1">
+                <button class="button button-green-back">Create</button>
+
+                @if (ViewBag.Errors != null)
+                {
+                    <div class="text-red ml">
+                        <ul>
+                            @foreach (string error in ViewBag.Errors)
+                            {
+                                <li class="ml">@error</li>
+                            }
+                        </ul>
+                    </div>
+                }
             </div>
         </div>
     </form>

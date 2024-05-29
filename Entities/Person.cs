@@ -9,6 +9,6 @@
         public string? Gender { get; set; }
         public Ulid? CountryID { get; set; }
         public string? Address { get; set; }
-        public bool ReciveNewsLetters { get; set; }
+        public bool ReceiveNewsLetters { get; set; }
     }
 }

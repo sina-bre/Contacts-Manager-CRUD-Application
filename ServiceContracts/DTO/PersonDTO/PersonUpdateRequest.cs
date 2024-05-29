@@ -30,7 +30,7 @@ namespace ServiceContracts.DTO.PersonDTO
         [Required(ErrorMessage = "{0} can't be empty")]
         public string? Address { get; set; }
 
-        public bool ReciveNewsLetters { get; set; }
+        public bool ReceiveNewsLetters { get; set; }
 
         public Person ToPerson()
         {
@@ -43,7 +43,7 @@ namespace ServiceContracts.DTO.PersonDTO
                 Gender = Gender.ToString(),
                 CountryID = CountryID,
                 Address = Address,
-                ReciveNewsLetters = ReciveNewsLetters
+                ReceiveNewsLetters = ReceiveNewsLetters
             };
         }
     }
