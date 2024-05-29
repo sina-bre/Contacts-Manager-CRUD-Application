@@ -5,6 +5,7 @@ using ServiceContracts.DTO.PersonDTO;
 using ServiceContracts.Interfaces;
 namespace DIExample.Controllers
 {
+    [Route("[controller]")]
     public class PersonsController : Controller
     {
         private readonly IPersonsService _personsService;
@@ -15,7 +16,7 @@ namespace DIExample.Controllers
             _personsService = personsService;
             _countriesService = countriesService;
         }
-        [Route("persons/index")]
+        [Route("[action]")]
         [Route("/")]
         public IActionResult Index(string searchBy, string? searchString, string sortBy = nameof(PersonResponse.PersonName), SortOrderOptions sortOrder = SortOrderOptions.ASC)
         {
@@ -47,7 +48,7 @@ namespace DIExample.Controllers
 
 
         [HttpGet]
-        [Route("persons/create")]
+        [Route("[action]")]
         public IActionResult Create()
         {
             List<CountryResponse> countries = _countriesService.GetAllCountries();
@@ -56,7 +57,7 @@ namespace DIExample.Controllers
         }
 
         [HttpPost]
-        [Route("persons/create")]
+        [Route("[action]")]
         public IActionResult Create(PersonAddRequest personAddRequest)
         {
             if (!ModelState.IsValid)
