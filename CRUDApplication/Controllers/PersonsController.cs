@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ServiceContracts.DTO.CountryDTO;
 using ServiceContracts.DTO.Enums;
 using ServiceContracts.DTO.PersonDTO;
@@ -52,7 +53,11 @@ namespace DIExample.Controllers
         public IActionResult Create()
         {
             List<CountryResponse> countries = _countriesService.GetAllCountries();
-            ViewBag.Countries = countries;
+            ViewBag.Countries = countries.Select(temp => new SelectListItem()
+            {
+                Text = temp.CountryName,
+                Value = temp.CountryID.ToString()
+            });
             return View();
         }
 
