@@ -28,7 +28,7 @@ namespace DIExample.Controllers
                 {nameof(PersonResponse.Email), "Email"},
                 {nameof(PersonResponse.DateOfBirth), "Birth"},
                 {nameof(PersonResponse.Gender), "Gender"},
-                {nameof(PersonResponse.CountryID), "Country"},
+                {nameof(PersonResponse.CountryName), "Country"},
                 {nameof(PersonResponse.Address), "Address"},
                 {nameof(PersonResponse.Age), "Age"},
             };

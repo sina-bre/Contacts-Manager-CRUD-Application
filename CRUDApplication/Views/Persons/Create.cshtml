@@ -7,7 +7,7 @@
 }
 
 <div>
-    <a href="~/persons/index" class="link-hover">
+    <a asp-controller="Persons" asp-action="Index"  class="link-hover">
         <i class="fa-solid fa-arrow-left" style="font-size:1rem;"></i>
         Back
     </a>
@@ -17,7 +17,7 @@
 
 
 <div class="w-50">
-    <form action="~/persons/create" method="post">
+    <form asp-controller="Persons" asp-action="Create" method="post">
         <div class="form-field flex">
             <div class="w-25">
                 <label for="PersonName" class="form-label pt">Name</label>

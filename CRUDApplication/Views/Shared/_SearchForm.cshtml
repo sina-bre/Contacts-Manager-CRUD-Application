@@ -1,4 +1,4 @@
-﻿<form action="~/@ViewBag.SearchFromActionUrl" method="get">
+﻿<form asp-controller="Persons" asp-action="Index"  method="get">
     <h1>Persons</h1>
     <div class="box flex">
         <div class="flex-1">
@@ -22,8 +22,8 @@
         </div>
         <div class="flex-1">
             <button class="button button-blue-back" type="submit">Search</button>
-            <button class="button"><a href="~/@ViewBag.SearchFromActionUrl"class="link-hover">Clear All</a></button>
-            <button class="button button-green-back" type="button"><a href="~/persons/create" style="color:#fff">Create</a></button>
+            <button class="button"><a asp-controller="Persons" asp-action="Index" class="link-hover">Clear All</a></button>
+            <button class="button button-green-back" type="button"><a asp-controller="Persons" asp-action="Create" style="color:#fff">Create</a></button>
         </div>
     </div>
 </form>
