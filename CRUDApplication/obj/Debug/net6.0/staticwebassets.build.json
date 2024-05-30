@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qnHshqoKalFyGVYwjAdBxoB3cILFexAR/WN1Fjfa/xw=",
+  "Hash": "5idxQt7fC1hJB2fZzAYgeiVr2wnhYxiLONdRfnf/ka4=",
   "Source": "CRUDApplication",
   "BasePath": "_content/CRUDApplication",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Identity": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\CRUDApplication\\wwwroot\\logo.png",
+      "SourceId": "CRUDApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\CRUDApplication\\wwwroot\\",
+      "BasePath": "_content/CRUDApplication",
+      "RelativePath": "logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\logo.png"
     },
     {
       "Identity": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\CRUDApplication\\wwwroot\\StyleSheet.css",
