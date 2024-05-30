@@ -20,7 +20,7 @@
     <form asp-controller="Persons" asp-action="Create" method="post">
         <div class="form-field flex">
             <div class="w-25">
-                <label for="PersonName" class="form-label pt">Name</label>
+                <label asp-for="PersonName" class="form-label pt">Name</label>
             </div>
             <div class="flex-1">
                 <input asp-for="PersonName" class="form-input" />
@@ -29,7 +29,7 @@
 
         <div class="form-field flex">
             <div class="w-25">
-                <label for="Email" class="form-label pt">Email</label>
+                <label asp-for="Email" class="form-label pt">Email</label>
             </div>
             <div class="flex-1">
                 <input asp-for="Email" class="form-input" />
@@ -38,7 +38,7 @@
 
         <div class="form-field flex">
             <div class="w-25">
-                <label for="DateOfBirth" class="form-label pt">Date Of Birth</label>
+                <label asp-for="DateOfBirth" class="form-label pt">Date Of Birth</label>
             </div>
             <div class="flex-1">
                 <input asp-for="DateOfBirth" class="form-input" />
@@ -63,22 +63,18 @@
 
         <div class="form-field flex">
             <div class="w-25">
-                <label for="CountryID" class="form-label pt">Country</label>
+                <label asp-for="CountryID" class="form-label pt">Country</label>
             </div>
             <div class="flex-1">
-                <select asp-for="CountryID" class="form-input">
+                <select asp-for="CountryID" class="form-input" asp-items="ViewBag.Countries">
                     <option value="">Please Select</option>
-                    @foreach(CountryResponse country in ViewBag.Countries)
-                    {
-                        <option value="@country.CountryID">@country.CountryName</option>
-                    }
                 </select>
             </div>
         </div>
 
         <div class="form-field flex">
             <div class="w-25">
-                <label for="Address" class="form-label pt">Address</label>
+                <label asp-for="Address" class="form-label pt">Address</label>
             </div>
             <div class="flex-1">
                 <textarea asp-for="Address" class="form-input" style="resize: none;"></textarea>
@@ -90,7 +86,7 @@
             </div>
             <div class="flex-1">
                 <input asp-for="ReceiveNewsLetters" value="true" />
-                <label for="ReceiveNewsLetters" class="form-label">Receive News Letters</label>
+                <label asp-for="ReceiveNewsLetters" class="form-label">Receive News Letters</label>
             </div>
         </div>
 
