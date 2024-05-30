@@ -19,8 +19,10 @@ namespace ServiceContracts.DTO.PersonDTO
         [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
 
+        [Required(ErrorMessage = "{0} can't be empty")]
         public GenderOptions Gender { get; set; }
 
+        [Required(ErrorMessage = "Please selcet a country")]
         public Ulid? CountryID { get; set; }
 
         public string? Address { get; set; }
