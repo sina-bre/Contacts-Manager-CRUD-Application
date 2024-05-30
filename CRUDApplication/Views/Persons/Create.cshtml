@@ -23,7 +23,7 @@
                 <label for="PersonName" class="form-label pt">Name</label>
             </div>
             <div class="flex-1">
-                <input type="text" id="PersonName" name="PersonName" class="form-input" />
+                <input asp-for="PersonName" class="form-input" />
             </div>
         </div>
 
@@ -32,7 +32,7 @@
                 <label for="Email" class="form-label pt">Email</label>
             </div>
             <div class="flex-1">
-                <input type="email" id="Email" name="Email" class="form-input" />
+                <input asp-for="Email" class="form-input" />
             </div>
         </div>
 
@@ -41,7 +41,7 @@
                 <label for="DateOfBirth" class="form-label pt">Date Of Birth</label>
             </div>
             <div class="flex-1">
-                <input type="date" id="DateOfBirth" name="DateOfBirth" class="form-input" />
+                <input asp-for="DateOfBirth" class="form-input" />
             </div>
         </div>
 
@@ -50,14 +50,14 @@
                 <label class="form-label">Gender</label>
             </div>
             <div class="flex-1">
-                <input type="radio" id="Male" name="Gender" value="Male" />
-                <label for="Male">Male</label>
-
-                <input type="radio" id="Female" name="Gender" value="Female" class="ml" />
-                <label for="Female">Female</label>
-
-                <input type="radio" id="Other" name="Gender" value="Other" class="ml" />
-                <label for="Other">Other</label>
+                @{
+                    List<string> genderOptions = new(Enum.GetNames(typeof(GenderOptions)));
+                }
+                @foreach(string genderOption in genderOptions)
+                {
+                    <input type="radio" asp-for="Gender" value="@genderOption" />
+                    <label for="@genderOption">@genderOption</label>
+                }
             </div>
         </div>
 
@@ -66,7 +66,7 @@
                 <label for="CountryID" class="form-label pt">Country</label>
             </div>
             <div class="flex-1">
-                <select name="CountryID" id="CountryID" class="form-input">
+                <select asp-for="CountryID" class="form-input">
                     <option value="">Please Select</option>
                     @foreach(CountryResponse country in ViewBag.Countries)
                     {
@@ -81,7 +81,7 @@
                 <label for="Address" class="form-label pt">Address</label>
             </div>
             <div class="flex-1">
-                <textarea id="Address" name="Address" class="form-input" style="resize: none;"></textarea>
+                <textarea asp-for="Address" class="form-input" style="resize: none;"></textarea>
             </div>
         </div>
 
@@ -89,7 +89,7 @@
             <div class="w-25">
             </div>
             <div class="flex-1">
-                <input type="checkbox" name="ReceiveNewsLetters" id="ReceiveNewsLetters" value="true" />
+                <input asp-for="ReceiveNewsLetters" value="true" />
                 <label for="ReceiveNewsLetters" class="form-label">Receive News Letters</label>
             </div>
         </div>
