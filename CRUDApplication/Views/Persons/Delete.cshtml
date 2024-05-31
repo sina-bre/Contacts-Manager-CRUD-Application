@@ -1,12 +1,12 @@
-﻿@model PersonUpdateRequest
+﻿@model PersonResponse
 
 
 @{
-    ViewBag.Title = "Edit Person";
+    ViewBag.Title = "Delete Person";
 }
 
 <div>
-    <a asp-controller="Persons" asp-action="Index"  class="link-hover">
+    <a asp-controller="Persons" asp-action="Index" class="link-hover">
         <i class="fa-solid fa-arrow-left" style="font-size:1rem;"></i>
         Back
     </a>
@@ -16,14 +16,14 @@
 
 
 <div class="center-box">
-    <form asp-controller="Persons" asp-action="Edit" method="post">
-        <input type="hidden" asp-for="PersonID"/>
+    <form asp-controller="Persons" asp-action="Delete" method="post">
+        <input type="hidden" asp-for="PersonID" />
         <div class="form-field flex">
             <div class="w-25">
                 <label asp-for="PersonName" class="form-label pt">Name</label>
             </div>
             <div class="flex-1">
-                <input asp-for="PersonName" class="form-input" />
+                <input asp-for="PersonName" disabled="disabled" class="form-input" />
                 <span asp-validation-for="PersonName" class="text-red"></span>
             </div>
         </div>
@@ -33,7 +33,7 @@
                 <label asp-for="Email" class="form-label pt">Email</label>
             </div>
             <div class="flex-1">
-                <input asp-for="Email" class="form-input" />
+                <input asp-for="Email" disabled="disabled" class="form-input" />
                 <span asp-validation-for="Email" class="text-red"></span>
             </div>
         </div>
@@ -43,7 +43,7 @@
                 <label asp-for="DateOfBirth" class="form-label pt">Date Of Birth</label>
             </div>
             <div class="flex-1">
-                <input asp-for="DateOfBirth" class="form-input" />
+                <input asp-for="DateOfBirth" disabled="disabled" class="form-input" />
                 <span asp-validation-for="DateOfBirth" class="text-red"></span>
             </div>
         </div>
@@ -56,9 +56,9 @@
                 @{
                     List<string> genderOptions = new(Enum.GetNames(typeof(GenderOptions)));
                 }
-                @foreach(string genderOption in genderOptions)
+                @foreach (string genderOption in genderOptions)
                 {
-                    <input type="radio" asp-for="Gender" value="@genderOption" />
+                    <input type="radio" asp-for="Gender" value="@genderOption" disabled="disabled" />
                     <label for="@genderOption">@genderOption</label>
                 }
                 <span asp-validation-for="Gender" class="text-red"></span>
@@ -70,8 +70,8 @@
                 <label asp-for="CountryID" class="form-label pt">Country</label>
             </div>
             <div class="flex-1">
-                <select asp-for="CountryID" class="form-input" asp-items="ViewBag.Countries">
-                    <option value="">Please Select</option>
+                <select asp-for="CountryID" disabled class="form-input" asp-items="ViewBag.Countries">
+                    <option value="CountryID">Please Select</option>
                 </select>
                 <span asp-validation-for="CountryID" class="text-red"></span>
             </div>
@@ -82,7 +82,7 @@
                 <label asp-for="Address" class="form-label pt">Address</label>
             </div>
             <div class="flex-1">
-                <textarea asp-for="Address" class="form-input" style="resize: none;"></textarea>
+                <textarea asp-for="Address" disabled="disabled" class="form-input" style="resize: none;"></textarea>
                 <span asp-validation-for="Address" class="text-red"></span>
             </div>
         </div>
@@ -91,7 +91,7 @@
             <div class="w-25">
             </div>
             <div class="flex-1">
-                <input asp-for="ReceiveNewsLetters" value="true" />
+                <input asp-for="ReceiveNewsLetters" value="true" disabled="disabled" />
                 <label asp-for="ReceiveNewsLetters" class="form-label">Receive News Letters</label>
                 <span asp-validation-for="ReceiveNewsLetters" class="text-red"></span>
             </div>
@@ -101,7 +101,7 @@
             <div class="w-25">
             </div>
             <div class="flex-1">
-                <button class="button button-orange-back" type="submit">Update</button>
+                <button class="button button-red-back" type="submit">Delete</button>
                 <div asp-validation-summary="All" class="text-red"></div>
                 @if (ViewBag.Errors != null)
                 {
@@ -119,8 +119,3 @@
     </form>
 </div>
 
-@section scripts{
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" asp-fallback-test="window.jQuery" asp-fallback-src="~/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" asp-fallback-test="window.jQuery.validator" asp-fallback-src="~/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js" asp-fallback-test="window.jQuery.validator.unobtrusive" asp-fallback-src="jquery.validate.unobtrusive.min.js"></script>
-}

@@ -49,6 +49,11 @@
                         <a asp-controller="Persons" asp-action="Edit" asp-route-personID="@person.PersonID" style="color:#fff;">Edit</a>
                     </button>
                 </td>
+                <td>
+                    <button class="button button-red-back" type="button">
+                        <a asp-controller="Persons" asp-action="Delete" asp-route-personID="@person.PersonID" style="color:#fff;">Delete</a>
+                    </button>
+                </td>
             </tr>
 
         }
