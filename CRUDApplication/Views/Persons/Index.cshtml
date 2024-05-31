@@ -44,7 +44,13 @@
                         }
                     </td>
                 }
+                <td>
+                    <button class="button button-orange-back" type="button">
+                        <a asp-controller="Persons" asp-action="Edit" asp-route-personID="@person.PersonID" style="color:#fff;">Edit</a>
+                    </button>
+                </td>
             </tr>
+
         }
     </tbody>
 </table>

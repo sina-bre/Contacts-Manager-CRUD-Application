@@ -76,5 +76,33 @@ namespace DIExample.Controllers
             PersonResponse personResponse = _personsService.AddPerson(personAddRequest);
             return RedirectToAction("Index", "Persons");
         }
+
+        [HttpGet]
+        [Route("[action]/{personID}")]
+        public IActionResult Edit(Ulid personID)
+        {
+            PersonResponse? personResponse = _personsService.GetPersonByPersonId(personID);
+            if (personResponse is null)
+            {
+                return RedirectToAction("[action]");
+            }
+            PersonUpdateRequest personUpdateRequest = personResponse.ToPersonUpdateRequest();
+
+            List<CountryResponse> countries = _countriesService.GetAllCountries();
+            ViewBag.Countries = countries.Select(temp => new SelectListItem()
+            {
+                Text = temp.CountryName,
+                Value = temp.CountryID.ToString()
+            });
+            return View(personUpdateRequest);
+        }
+
+        [HttpPost]
+        [Route("[action]/{personID}")]
+        public IActionResult Edit(PersonUpdateRequest personUpdateRequest)
+        {
+            _personsService.GetPersonByPersonId(personUpdateRequest.PersonID);
+            return View();
+        }
     }
 }
