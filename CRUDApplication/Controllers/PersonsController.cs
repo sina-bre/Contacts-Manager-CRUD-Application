@@ -101,8 +101,25 @@ namespace DIExample.Controllers
         [Route("[action]/{personID}")]
         public IActionResult Edit(PersonUpdateRequest personUpdateRequest)
         {
-            _personsService.GetPersonByPersonId(personUpdateRequest.PersonID);
-            return View();
+            PersonResponse? personResponse = _personsService.GetPersonByPersonId(personUpdateRequest.PersonID);
+
+            if (personResponse is null)
+            {
+                return RedirectToAction("[action]");
+            }
+            if (ModelState.IsValid)
+            {
+                PersonResponse updatedPerson = _personsService.UpdatePerson(personUpdateRequest);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                List<CountryResponse> countries = _countriesService.GetAllCountries();
+                ViewBag.Countries = countries;
+
+                ViewBag.Errors = ModelState.Values.SelectMany(value => value.Errors).Select(error => error.ErrorMessage).ToList();
+                return View();
+            }
         }
     }
 }
