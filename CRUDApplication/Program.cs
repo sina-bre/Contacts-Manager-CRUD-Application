@@ -8,7 +8,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<ICountriesService, CountriesService>();
 builder.Services.AddSingleton<IPersonsService, PersonsService>();
 
-builder.Services.AddDbContext<PersonsDBContext>(options => options.UseSqlServer());
+builder.Services.AddDbContext<PersonsDBContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 var app = builder.Build();
 if (builder.Environment.IsDevelopment())

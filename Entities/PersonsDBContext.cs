@@ -15,5 +15,7 @@ namespace Entities
 
             modelBuilder.Entity<Person>().ToTable("Persons");
         }
+
+        ModelBuilder
     }
 }
