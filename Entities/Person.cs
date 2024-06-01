@@ -11,7 +11,7 @@ namespace Entities
         [StringLength(50)]
         public string? Email { get; set; }
         public DateTime? DateOfBirth { get; set; }
-        [StringLength(10)]
+        [StringLength(30)]
         public string? Gender { get; set; }
         public Ulid? CountryID { get; set; }
         [StringLength(200)]

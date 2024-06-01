@@ -5,6 +5,11 @@ namespace Entities
 {
     public class PersonsDBContext : DbContext
     {
+
+        public PersonsDBContext(DbContextOptions options) : base(options)
+        {
+
+        }
         public DbSet<Country> Countries { get; set; }
         public DbSet<Person> Persons { get; set; }
 
@@ -12,8 +17,26 @@ namespace Entities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            var ulidConverter = new UlidToStringConverter();
 
+            modelBuilder.Entity<Country>()
+           .Property(country => country.ID)
+           .HasConversion(ulidConverter);
             modelBuilder.Entity<Country>().ToTable("Countries");
+
+            modelBuilder.Entity<Person>()
+          .Property(person => person.ID)
+          .HasConversion(ulidConverter);
+
+            modelBuilder.Entity<Person>()
+         .Property(person => person.CountryID)
+         .HasConversion(ulidConverter);
+
+            //modelBuilder.Entity<Person>(entity =>
+            //{
+            //    entity.Property(e => e.Gender)
+            //          .HasMaxLength(30);
+            //});
             modelBuilder.Entity<Person>().ToTable("Persons");
 
 
@@ -40,7 +63,7 @@ namespace Entities
                     modelBuilder.Entity<Country>().HasData(country);
 
 
-            string personsFilePath = Path.Combine(projectDirectory.FullName, "Entities", "mockData", "Countries.json");
+            string personsFilePath = Path.Combine(projectDirectory.FullName, "Entities", "mockData", "Persons.json");
             if (!File.Exists(personsFilePath))
             {
                 throw new FileNotFoundException($"The file '{personsFilePath}' was not found.");
