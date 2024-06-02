@@ -47,27 +47,29 @@ namespace Services
             return ConvertPersonToPersonResponse(person);
         }
 
-        //public List<PersonResponse> GetAllPersons()
-        //{
-        //    return _dbContext.Persons.ToList().Select(temp => ConvertPersonToPersonResponse(temp)).ToList();
-        //}
-
         public List<PersonResponse> GetAllPersons()
         {
-            return _dbContext.Persons.Select(person => new PersonResponse
-            {
-                PersonID = person.ID,
-                PersonName = person.PersonName,
-                Email = person.Email,
-                DateOfBirth = person.DateOfBirth,
-                Gender = person.Gender,
-                CountryID = person.CountryID,
-                Address = person.Address,
-                ReceiveNewsLetters = person.ReceiveNewsLetters,
-                Age = PersonExtensions.CalculateAgeByDateOfBirth(person.DateOfBirth),
-                CountryName = _dbContext.Countries.Where(c => c.ID == person.CountryID).Select(c => c.Name).FirstOrDefault()
-            }).ToList();
+            //return _dbContext.Persons.ToList().Select(temp => ConvertPersonToPersonResponse(temp)).ToList();
+
+            return _dbContext.sp_GetAllPersons().Select(temp => ConvertPersonToPersonResponse(temp)).ToList();
         }
+
+        //public List<PersonResponse> GetAllPersons()
+        //{
+        //    return _dbContext.Persons.Select(person => new PersonResponse
+        //    {
+        //        PersonID = person.ID,
+        //        PersonName = person.PersonName,
+        //        Email = person.Email,
+        //        DateOfBirth = person.DateOfBirth,
+        //        Gender = person.Gender,
+        //        CountryID = person.CountryID,
+        //        Address = person.Address,
+        //        ReceiveNewsLetters = person.ReceiveNewsLetters,
+        //        Age = PersonExtensions.CalculateAgeByDateOfBirth(person.DateOfBirth),
+        //        CountryName = _dbContext.Countries.Where(c => c.ID == person.CountryID).Select(c => c.Name).FirstOrDefault()
+        //    }).ToList();
+        //}
 
 
 

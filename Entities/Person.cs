@@ -5,6 +5,7 @@ namespace Entities
     public class Person
     {
         [Key]
+        [StringLength(26)]
         public Ulid ID { get; set; }
         [StringLength(50)]
         public string? PersonName { get; set; }

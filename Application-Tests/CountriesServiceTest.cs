@@ -1,5 +1,8 @@
-﻿using ServiceContracts.DTO.CountryDTO;
+﻿using Entities;
+using Microsoft.EntityFrameworkCore;
+using ServiceContracts.DTO.CountryDTO;
 using ServiceContracts.Interfaces;
+using Services;
 namespace Application_Tests
 {
     public class CountriesServiceTest
@@ -8,7 +11,7 @@ namespace Application_Tests
 
         public CountriesServiceTest()
         {
-            _countriesService = countriesService;
+            _countriesService = new CountriesService(new PersonsDBContext(new DbContextOptionsBuilder<PersonsDBContext>().Options));
         }
 
         #region AddCountries

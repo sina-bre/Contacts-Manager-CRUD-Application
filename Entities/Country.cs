@@ -8,6 +8,7 @@ namespace Entities
     public class Country
     {
         [Key]
+        [StringLength(26)]
         public Ulid ID { get; set; }
         public string? Name { get; set; }
     }

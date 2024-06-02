@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Entities.Migrations
 {
     [DbContext(typeof(PersonsDBContext))]
-    [Migration("20240601201846_Initial")]
-    partial class Initial
+    [Migration("20240602194923_GetPersons_StoredProcedure")]
+    partial class GetPersons_StoredProcedure
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,7 +27,8 @@ namespace Entities.Migrations
             modelBuilder.Entity("Entities.Country", b =>
                 {
                     b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(26)
+                        .HasColumnType("nvarchar(26)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -292,7 +293,8 @@ namespace Entities.Migrations
             modelBuilder.Entity("Entities.Person", b =>
                 {
                     b.Property<string>("ID")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(26)
+                        .HasColumnType("nvarchar(26)");
 
                     b.Property<string>("Address")
                         .HasMaxLength(200)

@@ -32,11 +32,7 @@ namespace Entities
          .Property(person => person.CountryID)
          .HasConversion(ulidConverter);
 
-            //modelBuilder.Entity<Person>(entity =>
-            //{
-            //    entity.Property(e => e.Gender)
-            //          .HasMaxLength(30);
-            //});
+
             modelBuilder.Entity<Person>().ToTable("Persons");
 
 
@@ -75,6 +71,16 @@ namespace Entities
             if (persons is not null)
                 foreach (Person person in persons)
                     modelBuilder.Entity<Person>().HasData(person);
+        }
+        public List<Person> sp_GetAllPersons()
+        {
+            return Persons.FromSqlRaw("EXECUTE [dbo].[GetAllPersons]").ToList();
+        }
+        public void CleanupDatabase()
+        {
+            this.Database.ExecuteSqlRaw("IF OBJECT_ID('dbo.Countries', 'U') IS NOT NULL DROP TABLE dbo.Countries;");
+            this.Database.ExecuteSqlRaw("IF OBJECT_ID('dbo.Persons', 'U') IS NOT NULL DROP TABLE dbo.Persons;");
+            this.Database.ExecuteSqlRaw("DELETE FROM dbo.__EFMigrationsHistory;");
         }
     }
 }
