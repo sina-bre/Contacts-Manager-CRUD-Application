@@ -4,44 +4,19 @@ using ServiceContracts.DTO.PersonDTO;
 using ServiceContracts.Interfaces;
 using Services.Helpers;
 using System.Reflection;
-using System.Text.Json;
 
 namespace Services
 {
     public class PersonsService : IPersonsService
     {
-        private readonly List<Person> _persons;
+        private readonly PersonsDBContext _dbContext;
         private readonly ICountriesService _countriesService;
 
 
-        public PersonsService(bool initialize = true)
+        public PersonsService(PersonsDBContext personsDBContext, ICountriesService countriesService)
         {
-            _persons = new List<Person>();
-            _countriesService = new CountriesService();
-
-            if (initialize)
-            {
-                string assemblyLocation = Assembly.GetExecutingAssembly().Location;
-                string? assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
-                if (assemblyDirectory is null)
-                    throw new ArgumentNullException(nameof(assemblyDirectory));
-                DirectoryInfo? projectDirectory = Directory.GetParent(assemblyDirectory)?.Parent?.Parent?.Parent;
-                if (projectDirectory is null)
-                {
-                    throw new DirectoryNotFoundException($"Project directory was not found.");
-                }
-                string filePath = Path.Combine(projectDirectory.FullName, "Services", "mockData", "Persons.json");
-                if (!File.Exists(filePath))
-                {
-                    throw new FileNotFoundException($"The file '{filePath}' was not found.");
-                }
-                string json = File.ReadAllText(filePath);
-                List<Person>? persons = JsonSerializer.Deserialize<List<Person>>(json);
-
-
-                if (persons is not null)
-                    _persons.AddRange(persons);
-            }
+            _dbContext = personsDBContext;
+            _countriesService = countriesService;
         }
         private PersonResponse ConvertPersonToPersonResponse(Person person)
         {
@@ -49,7 +24,6 @@ namespace Services
             personResponse.CountryName = _countriesService.GetCountryByCountryID(person.CountryID)?.CountryName;
 
             return personResponse;
-
         }
         public PersonResponse AddPerson(PersonAddRequest? personAddRequest)
         {
@@ -66,7 +40,8 @@ namespace Services
             person.ID = Ulid.NewUlid();
 
             //add person object to persons list
-            _persons.Add(person);
+            _dbContext.Persons.Add(person);
+            _dbContext.SaveChanges();
 
             //convert the Person object into PersonResponse type
             return ConvertPersonToPersonResponse(person);
@@ -74,17 +49,36 @@ namespace Services
 
         public List<PersonResponse> GetAllPersons()
         {
-            List<PersonResponse> personResponses = _persons.Select(temp => ConvertPersonToPersonResponse(temp)).ToList();
+            //return _dbContext.Persons.ToList().Select(temp => ConvertPersonToPersonResponse(temp)).ToList();
 
-            return personResponses;
+            return _dbContext.sp_GetAllPersons().Select(temp => ConvertPersonToPersonResponse(temp)).ToList();
         }
+
+        //public List<PersonResponse> GetAllPersons()
+        //{
+        //    return _dbContext.Persons.Select(person => new PersonResponse
+        //    {
+        //        PersonID = person.ID,
+        //        PersonName = person.PersonName,
+        //        Email = person.Email,
+        //        DateOfBirth = person.DateOfBirth,
+        //        Gender = person.Gender,
+        //        CountryID = person.CountryID,
+        //        Address = person.Address,
+        //        ReceiveNewsLetters = person.ReceiveNewsLetters,
+        //        Age = PersonExtensions.CalculateAgeByDateOfBirth(person.DateOfBirth),
+        //        CountryName = _dbContext.Countries.Where(c => c.ID == person.CountryID).Select(c => c.Name).FirstOrDefault()
+        //    }).ToList();
+        //}
+
+
 
         public PersonResponse? GetPersonByPersonId(Ulid? personID)
         {
             if (personID is null)
                 return null;
 
-            Person? matchedPerson = _persons.FirstOrDefault(temp => temp.ID == personID);
+            Person? matchedPerson = _dbContext.Persons.FirstOrDefault(temp => temp.ID == personID);
 
             if (matchedPerson is null)
                 return null;
@@ -148,7 +142,7 @@ namespace Services
             ValidationHelper.MedelValiadtion(personUpdateRequest);
 
             //get matching person object to update
-            Person? matchingPerson = _persons.FirstOrDefault(temp => temp.ID == personUpdateRequest.PersonID);
+            Person? matchingPerson = _dbContext.Persons.FirstOrDefault(temp => temp.ID == personUpdateRequest.PersonID);
 
             var personType = typeof(Person);
             var updateRequestType = typeof(PersonUpdateRequest);
@@ -173,6 +167,7 @@ namespace Services
                     }
                 }
             }
+            _dbContext.SaveChanges();
             return ConvertPersonToPersonResponse(matchingPerson);
         }
 
@@ -181,12 +176,13 @@ namespace Services
             if (personID is null)
                 throw new ArgumentNullException(nameof(personID));
 
-            Person? person = _persons.FirstOrDefault(temp => temp.ID == personID);
+            Person? person = _dbContext.Persons.FirstOrDefault(temp => temp.ID == personID);
 
             if (person is null)
                 return false;
 
-            _persons.RemoveAll(temp => temp.ID == person.ID);
+            _dbContext.Persons.Remove(_dbContext.Persons.First(temp => temp.ID == person.ID));
+            _dbContext.SaveChanges();
             return true;
         }
     }

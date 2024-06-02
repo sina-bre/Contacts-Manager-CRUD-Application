@@ -1,5 +1,6 @@
 ﻿using Application_Tests.Helpers;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 using ServiceContracts.DTO.CountryDTO;
 using ServiceContracts.DTO.Enums;
 using ServiceContracts.DTO.PersonDTO;
@@ -18,8 +19,8 @@ namespace Application_Tests
 
         public PersonsServiceTest(ITestOutputHelper testOutputHelper)
         {
-            _personsService = new PersonsService(false);
-            _countriesService = new CountriesService(false);
+            _countriesService = new CountriesService(new PersonsDBContext(new DbContextOptionsBuilder<PersonsDBContext>().Options));
+            _personsService = new PersonsService(new PersonsDBContext(new DbContextOptionsBuilder<PersonsDBContext>().Options), _countriesService);
             _testOutputHelper = testOutputHelper;
         }
 

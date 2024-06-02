@@ -24,3 +24,5 @@ E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities
 E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\obj\Debug\net6.0\refint\Entities.dll
 E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\obj\Debug\net6.0\Entities.pdb
 E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\obj\Debug\net6.0\ref\Entities.dll
+E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\bin\Debug\net6.0\Entities.runtimeconfig.json
+E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\Entities\obj\Debug\net6.0\Entities.genruntimeconfig.cache

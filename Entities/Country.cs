@@ -1,10 +1,14 @@
-﻿namespace Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Entities
 {
+    /// <summary>
+    /// Domain Model for Country
+    /// </summary>
     public class Country
     {
-        /// <summary>
-        /// Domain Model for Country
-        /// </summary>
+        [Key]
+        [StringLength(26)]
         public Ulid ID { get; set; }
         public string? Name { get; set; }
     }
