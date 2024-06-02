@@ -1,42 +1,16 @@
 ﻿using Entities;
 using ServiceContracts.DTO.CountryDTO;
 using ServiceContracts.Interfaces;
-using System.Reflection;
-using System.Text.Json;
 
 namespace Services
 {
     public class CountriesService : ICountriesService
     {
-        private readonly List<Country> _countries;
+        private readonly PersonsDBContext _dbContext;
 
-        public CountriesService(bool initialize = true)
+        public CountriesService(PersonsDBContext personsDBContext)
         {
-            _countries = new List<Country>();
-
-            if (initialize)
-            {
-                string assemblyLocation = Assembly.GetExecutingAssembly().Location;
-                string? assemblyDirectory = Path.GetDirectoryName(assemblyLocation);
-
-                if (assemblyDirectory is null)
-                    throw new ArgumentNullException();
-                DirectoryInfo? projectDirectory = Directory.GetParent(assemblyDirectory)?.Parent?.Parent?.Parent;
-                if (projectDirectory is null)
-                {
-                    throw new DirectoryNotFoundException($"Project directory was not found.");
-                }
-                string filePath = Path.Combine(projectDirectory.FullName, "Services", "mockData", "Countries.json");
-                if (!File.Exists(filePath))
-                {
-                    throw new FileNotFoundException($"The file '{filePath}' was not found.");
-                }
-                string json = File.ReadAllText(filePath);
-                List<Country>? countries = JsonSerializer.Deserialize<List<Country>>(json);
-
-                if (countries is not null)
-                    _countries.AddRange(countries);
-            }
+            _dbContext = personsDBContext;
         }
         public CountryResponse AddCountry(CountryAddRequest? countryAddRequest)
         {
@@ -53,7 +27,7 @@ namespace Services
             }
 
             //Validation: Dublication of countryName does not allowed
-            if (_countries.Where(temp => temp.Name == countryAddRequest.CountryName).Any())
+            if (_dbContext.Countries.Count(temp => temp.Name == countryAddRequest.CountryName) > 0)
             {
                 throw new ArgumentException("Given country name already exists");
             }
@@ -63,15 +37,16 @@ namespace Services
             //generate CountryID
             country.ID = Ulid.NewUlid();
 
-            //Add country object into _countries
-            _countries.Add(country);
+            //Add country object into _dbContext
+            _dbContext.Countries.Add(country);
+            _dbContext.SaveChanges();
 
             return country.ToCountryRespone();
         }
 
         public List<CountryResponse> GetAllCountries()
         {
-            return _countries.Select(country => country.ToCountryRespone()).ToList();
+            return _dbContext.Countries.Select(country => country.ToCountryRespone()).ToList();
         }
 
         public CountryResponse? GetCountryByCountryID(Ulid? countryID)
@@ -79,7 +54,7 @@ namespace Services
             if (countryID is null)
                 return null;
 
-            Country? countryResponseFromList = _countries.FirstOrDefault(countryTemp => countryTemp.ID == countryID);
+            Country? countryResponseFromList = _dbContext.Countries.FirstOrDefault(countryTemp => countryTemp.ID == countryID);
 
             if (countryResponseFromList is null)
                 return null;

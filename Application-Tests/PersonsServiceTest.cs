@@ -4,7 +4,6 @@ using ServiceContracts.DTO.CountryDTO;
 using ServiceContracts.DTO.Enums;
 using ServiceContracts.DTO.PersonDTO;
 using ServiceContracts.Interfaces;
-using Services;
 using Xunit.Abstractions;
 
 
@@ -18,8 +17,8 @@ namespace Application_Tests
 
         public PersonsServiceTest(ITestOutputHelper testOutputHelper)
         {
-            _personsService = new PersonsService(false);
-            _countriesService = new CountriesService(false);
+            _personsService = personsService;
+            _countriesService = countriesService;
             _testOutputHelper = testOutputHelper;
         }
 

@@ -1,6 +1,5 @@
 ﻿using ServiceContracts.DTO.CountryDTO;
 using ServiceContracts.Interfaces;
-using Services;
 namespace Application_Tests
 {
     public class CountriesServiceTest
@@ -9,7 +8,7 @@ namespace Application_Tests
 
         public CountriesServiceTest()
         {
-            _countriesService = new CountriesService(false);
+            _countriesService = countriesService;
         }
 
         #region AddCountries
