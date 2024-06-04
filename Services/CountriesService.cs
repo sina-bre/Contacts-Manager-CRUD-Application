@@ -54,9 +54,11 @@ namespace Services
             if (countryID is null)
                 return null;
 
-            Country? countryResponseFromList = _dbContext.Countries.FirstOrDefault(countryTemp => countryTemp.ID == countryID);
+            //Country? countryResponseFromList = _dbContext.Countries.FirstOrDefault(countryTemp => countryTemp.ID == countryID);
+            Country? countryResponseFromList = _dbContext.Countries.Find(countryID);
 
-            if (countryResponseFromList is null)
+
+            if (countryResponseFromList == null)
                 return null;
 
             return countryResponseFromList.ToCountryRespone();

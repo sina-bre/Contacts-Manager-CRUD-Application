@@ -4,6 +4,7 @@ using Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Entities.Migrations
 {
     [DbContext(typeof(PersonsDBContext))]
-    partial class PersonsDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240604043037_InsertPerson_StoredProcedure")]
+    partial class InsertPerson_StoredProcedure
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -318,12 +320,6 @@ namespace Entities.Migrations
 
                     b.Property<bool>("ReceiveNewsLetters")
                         .HasColumnType("bit");
-
-                    b.Property<string>("TIN")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("varchar(8)")
-                        .HasDefaultValue("ABC12387")
-                        .HasColumnName("TaxIdentificationNumber");
 
                     b.HasKey("ID");
 
