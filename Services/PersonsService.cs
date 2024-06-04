@@ -40,8 +40,9 @@ namespace Services
             person.ID = Ulid.NewUlid();
 
             //add person object to persons list
-            _dbContext.Persons.Add(person);
-            _dbContext.SaveChanges();
+            //_dbContext.Persons.Add(person);
+            //_dbContext.SaveChanges();
+            _dbContext.sp_InsertPerson(person);
 
             //convert the Person object into PersonResponse type
             return ConvertPersonToPersonResponse(person);
@@ -56,7 +57,9 @@ namespace Services
 
         //public List<PersonResponse> GetAllPersons()
         //{
-        //    return _dbContext.Persons.Select(person => new PersonResponse
+        //    var persons = _dbContext.sp_GetAllPersons();
+
+        //    return persons.Select(person => new PersonResponse
         //    {
         //        PersonID = person.ID,
         //        PersonName = person.PersonName,
@@ -65,9 +68,7 @@ namespace Services
         //        Gender = person.Gender,
         //        CountryID = person.CountryID,
         //        Address = person.Address,
-        //        ReceiveNewsLetters = person.ReceiveNewsLetters,
-        //        Age = PersonExtensions.CalculateAgeByDateOfBirth(person.DateOfBirth),
-        //        CountryName = _dbContext.Countries.Where(c => c.ID == person.CountryID).Select(c => c.Name).FirstOrDefault()
+        //        ReceiveNewsLetters = person.ReceiveNewsLetters
         //    }).ToList();
         //}
 
