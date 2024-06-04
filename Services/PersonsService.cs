@@ -40,9 +40,9 @@ namespace Services
             person.ID = Ulid.NewUlid();
 
             //add person object to persons list
-            //_dbContext.Persons.Add(person);
-            //_dbContext.SaveChanges();
-            _dbContext.sp_InsertPerson(person);
+            _dbContext.Persons.Add(person);
+            _dbContext.SaveChanges();
+            //_dbContext.sp_InsertPerson(person);
 
             //convert the Person object into PersonResponse type
             return ConvertPersonToPersonResponse(person);
@@ -50,9 +50,9 @@ namespace Services
 
         public List<PersonResponse> GetAllPersons()
         {
-            //return _dbContext.Persons.ToList().Select(temp => ConvertPersonToPersonResponse(temp)).ToList();
+            return _dbContext.Persons.ToList().Select(temp => ConvertPersonToPersonResponse(temp)).ToList();
 
-            return _dbContext.sp_GetAllPersons().Select(temp => ConvertPersonToPersonResponse(temp)).ToList();
+            //return _dbContext.sp_GetAllPersons().Select(temp => ConvertPersonToPersonResponse(temp)).ToList();
         }
 
         //public List<PersonResponse> GetAllPersons()
