@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Microsoft.EntityFrameworkCore;
 using ServiceContracts.DTO.Enums;
 using ServiceContracts.DTO.PersonDTO;
 using ServiceContracts.Interfaces;
@@ -18,13 +19,7 @@ namespace Services
             _dbContext = personsDBContext;
             _countriesService = countriesService;
         }
-        private PersonResponse ConvertPersonToPersonResponse(Person person)
-        {
-            PersonResponse personResponse = person.ToPerosnResponse();
-            personResponse.CountryName = _countriesService.GetCountryByCountryID(person.CountryID)?.CountryName;
 
-            return personResponse;
-        }
         public PersonResponse AddPerson(PersonAddRequest? personAddRequest)
         {
             if (personAddRequest is null)
@@ -45,48 +40,28 @@ namespace Services
             //_dbContext.sp_InsertPerson(person);
 
             //convert the Person object into PersonResponse type
-            return ConvertPersonToPersonResponse(person);
+            return person.ToPerosnResponse();
         }
 
         public List<PersonResponse> GetAllPersons()
         {
-            return _dbContext.Persons.ToList().Select(temp => ConvertPersonToPersonResponse(temp)).ToList();
+            var persons = _dbContext.Persons.Include("Country").ToList();
+            return persons.Select(temp => temp.ToPerosnResponse()).ToList();
 
-            //return _dbContext.sp_GetAllPersons().Select(temp => ConvertPersonToPersonResponse(temp)).ToList();
+            //return _dbContext.sp_GetAllPersons().Select(temp => temp.ToPersonResponse()).ToList();
         }
-
-        //public List<PersonResponse> GetAllPersons()
-        //{
-        //    var persons = _dbContext.sp_GetAllPersons();
-
-        //    return persons.Select(person => new PersonResponse
-        //    {
-        //        PersonID = person.ID,
-        //        PersonName = person.PersonName,
-        //        Email = person.Email,
-        //        DateOfBirth = person.DateOfBirth,
-        //        Gender = person.Gender,
-        //        CountryID = person.CountryID,
-        //        Address = person.Address,
-        //        ReceiveNewsLetters = person.ReceiveNewsLetters
-        //    }).ToList();
-        //}
-
-
 
         public PersonResponse? GetPersonByPersonId(Ulid? personID)
         {
             if (personID is null)
                 return null;
 
-            Person? matchedPerson = _dbContext.Persons.FirstOrDefault(temp => temp.ID == personID);
+            Person? matchedPerson = _dbContext.Persons.Include("Country").FirstOrDefault(temp => temp.ID == personID);
 
             if (matchedPerson is null)
                 return null;
 
-            PersonResponse personResponse = ConvertPersonToPersonResponse(matchedPerson);
-
-            return personResponse;
+            return matchedPerson.ToPerosnResponse();
         }
 
         public List<PersonResponse> GetFilteredPersons(string searchBy, string? searchString)
@@ -169,7 +144,7 @@ namespace Services
                 }
             }
             _dbContext.SaveChanges();
-            return ConvertPersonToPersonResponse(matchingPerson);
+            return matchingPerson.ToPerosnResponse();
         }
 
         public bool DeletePerson(Ulid? personID)
