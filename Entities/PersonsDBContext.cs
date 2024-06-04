@@ -78,6 +78,11 @@ namespace Entities
 
             //modelBuilder.Entity<Person>().HasIndex(temp => temp.TIN).IsUnique();
             modelBuilder.Entity<Person>().HasCheckConstraint("CHK_TIN", "len([TaxIdentificationNumber]) = 8");
+
+            //modelBuilder.Entity<Person>(entity =>
+            //{
+            //    entity.HasOne<Country>(country => country.Country).WithMany(p => p.Persons).HasForeignKey(p => p.CountryID);
+            //});
         }
         public List<Person> sp_GetAllPersons()
         {

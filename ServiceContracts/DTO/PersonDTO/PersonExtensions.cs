@@ -33,6 +33,7 @@ namespace ServiceContracts.DTO.PersonDTO
                 Address = person.Address,
                 ReceiveNewsLetters = person.ReceiveNewsLetters,
                 Age = CalculateAgeByDateOfBirth(person.DateOfBirth),
+                CountryName = person.Country?.Name
             };
         }
     }
