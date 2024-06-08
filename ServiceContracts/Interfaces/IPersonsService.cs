@@ -58,7 +58,7 @@ namespace ServiceContracts.Interfaces
         /// <param name="personID">
         /// PersonID to delete</param>
         /// <returns>Returns true, if the deletion is successful otherwise returns false</returns>
-        bool DeletePerson(Ulid? personID);
+        Task<bool> DeletePerson(Ulid? personID);
 
     }
 }
