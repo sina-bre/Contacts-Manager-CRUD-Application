@@ -6,13 +6,13 @@ namespace Application_Tests.Helpers
     public class CreateCountryHelper
     {
 
-        internal static CountryResponse CountryCreator(ICountriesService countriesService, string CountryName)
+        internal static async Task<CountryResponse> CountryCreator(ICountriesService countriesService, string CountryName)
         {
             CountryAddRequest countryAddRequest = new()
             {
                 CountryName = CountryName
             };
-            return countriesService.AddCountry(countryAddRequest);
+            return await countriesService.AddCountry(countryAddRequest);
         }
     }
 }

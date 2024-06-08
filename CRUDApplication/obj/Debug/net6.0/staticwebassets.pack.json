@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\CRUDApplication\\wwwroot\\Rotativa\\wkhtmltopdf.exe",
+      "PackagePath": "staticwebassets\\Rotativa\\wkhtmltopdf.exe"
+    },
+    {
       "Id": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\CRUDApplication\\wwwroot\\StyleSheet.css",
       "PackagePath": "staticwebassets\\StyleSheet.css"
     },
