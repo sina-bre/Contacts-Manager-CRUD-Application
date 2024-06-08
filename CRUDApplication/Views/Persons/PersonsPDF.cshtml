@@ -4,7 +4,7 @@
     PropertyInfo[] PersonProperties = typeof(PersonResponse).GetProperties();
     IEnumerable<PropertyInfo> filteredPersonProperties = PersonProperties.Where(prop => prop.Name != "PersonID" && prop.Name != "CountryID");
 }
-<link href="@("http://" + Context.Request.Host.ToString() + "StyleSheet.css")" rel="stylesheet" />
+<link href="@("http://" + Context.Request.Host.ToString() + "/Stylesheet.css")" rel="stylesheet" />
 <table class="table mt w-100">
     <thead>
         <tr>
