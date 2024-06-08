@@ -108,3 +108,5 @@ E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\CRUDAppl
 E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\CRUDApplication\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\CRUDApplication\bin\Debug\net6.0\Humanizer.dll
 E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\CRUDApplication\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\CRUDApplication\bin\Debug\net6.0\Rotativa.AspNetCore.dll
+E:\ASP.NET Core\Asp.net Core Projects\Contacts-Manager-CRUD-Application\CRUDApplication\obj\Debug\net6.0\CRUDApplication.MvcApplicationPartsAssemblyInfo.cs

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Rotativa.AspNetCore;
 using ServiceContracts.DTO.CountryDTO;
 using ServiceContracts.DTO.Enums;
 using ServiceContracts.DTO.PersonDTO;
@@ -149,6 +150,19 @@ namespace DIExample.Controllers
 
             await _personsService.DeletePerson(personUpdateRequest.PersonID);
             return RedirectToAction("Index");
+        }
+
+
+
+        [Route("[action]")]
+        public async Task<IActionResult> PersonsPDF()
+        {
+            List<PersonResponse> persons = await _personsService.GetAllPersons();
+            return new ViewAsPdf("PersonsPDF", persons, ViewData)
+            {
+                PageMargins = new() { Top = 20, Bottom = 20, Right = 20, Left = 20 },
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape
+            };
         }
     }
 }

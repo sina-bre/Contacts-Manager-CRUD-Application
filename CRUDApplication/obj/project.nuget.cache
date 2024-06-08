@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yEBRMN44KwnQ7Kh+Q9XOKboM0Sg/Pw+ltSCY2d+f4MQG1yHBBwSh1XzKAnW88ttyNXu2xvaJfhbhw0khelF82g==",
+  "dgSpecHash": "AHdjRNJbxNmvGxgdr7vFEqVlAtqvV1J/IZi3fEeIA0aAuPYKRdSn4IaVmCf9LK/VM8V5+bupULtckO4kLZGNJw==",
   "success": true,
   "projectFilePath": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\CRUDApplication\\CRUDApplication.csproj",
   "expectedPackageFiles": [
@@ -32,6 +32,7 @@
     "C:\\Users\\Sina\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Sina\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Sina\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\Sina\\.nuget\\packages\\rotativa.aspnetcore\\1.3.2\\rotativa.aspnetcore.1.3.2.nupkg.sha512",
     "C:\\Users\\Sina\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\Sina\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\Sina\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
