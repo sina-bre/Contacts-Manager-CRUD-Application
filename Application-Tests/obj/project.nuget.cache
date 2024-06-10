@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "hg/C6IoBDVLUHt0PrDFZvrR9zDVUCNGXnIgxcZ3q2FfoTR3yzpA8Q6Z/X97GMgHUl66jnFLUppuJevjCjrbrZA==",
+  "dgSpecHash": "mveP6Q852jd7DJTfzIU7jm8/ta1ZDCYszxH7VS9/tgHvzOQTaTRTRivxL0pmXZDQbP2lkkWWHDOPDe6S6kecuA==",
   "success": true,
   "projectFilePath": "E:\\ASP.NET Core\\Asp.net Core Projects\\Contacts-Manager-CRUD-Application\\Application-Tests\\Application-Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sina\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
+    "C:\\Users\\Sina\\.nuget\\packages\\csvhelper\\27.2.1\\csvhelper.27.2.1.nupkg.sha512",
     "C:\\Users\\Sina\\.nuget\\packages\\microsoft.codecoverage\\17.5.0\\microsoft.codecoverage.17.5.0.nupkg.sha512",
     "C:\\Users\\Sina\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Sina\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
